@@ -1,1 +1,1 @@
-YoutubeCueClient
+YoutubeQueueClient
