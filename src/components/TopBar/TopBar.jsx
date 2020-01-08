@@ -1,25 +1,26 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import { Toolbar, Typography } from "@material-ui/core";
+import {InputBase, Toolbar, Typography} from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import { Add, WbSunny } from "@material-ui/icons"
 import styles from "./styles";
 import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
 
 class TopBar extends React.Component {
     render() {
-        const { classes } = this.props;
+        const { classes, title, onDarkModeClick } = this.props;
         return (
-            <div className={styles.root}>
-                <AppBar position="static">
+            <div className={classes.root}>
+                <AppBar position="static" color="primary">
                     <Toolbar>
                         <IconButton edge="start" color="secondary" className={classes.addButton}>
                             <Add/>
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            YouTube Smart Cue
+                            {title}
                         </Typography>
-                        <IconButton color="secondary">
+                        <IconButton color="secondary" onClick={onDarkModeClick}>
                             <WbSunny/>
                         </IconButton>
                     </Toolbar>
@@ -28,5 +29,11 @@ class TopBar extends React.Component {
         );
     }
 }
+
+TopBar.propTypes = {
+    onDarkModeClick: PropTypes.func.isRequired,
+    onAddClick: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired
+};
 
 export default withStyles(styles)(TopBar);
