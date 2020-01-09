@@ -6,6 +6,7 @@ import { Add, WbSunny } from "@material-ui/icons"
 import styles from "./styles";
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
+import VideoSearchContainer from "../../containers/VideoSearchContainer/VideoSearchContainer";
 
 class TopBar extends React.Component {
     render() {
@@ -20,6 +21,7 @@ class TopBar extends React.Component {
                         <Typography variant="h6" className={classes.title}>
                             {title}
                         </Typography>
+                        <VideoSearchContainer topClassName={classes.search}/>
                         <IconButton color="secondary" onClick={onDarkModeClick}>
                             <WbSunny/>
                         </IconButton>
