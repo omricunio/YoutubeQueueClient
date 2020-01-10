@@ -6,7 +6,7 @@ export default theme => ({
     container: {
         display: "flex",
         alignItems: "center",
-        padding: theme.spacing(0,0,0,1)
+        padding: theme.spacing(0,0,1,0.5)
     },
     inputBase: {
         width: "90%"

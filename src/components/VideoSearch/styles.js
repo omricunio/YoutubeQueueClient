@@ -1,5 +1,4 @@
 export default theme => { 
-    debugger;
     return {
     container: {
         display: "flex",
