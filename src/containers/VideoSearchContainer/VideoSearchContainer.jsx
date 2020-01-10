@@ -1,21 +1,23 @@
-import React from "react";
-import VideoSearch from "../../components/VideoSearch/VideoSearch";
+import React, { Component } from 'react'
+import VideoSearch from '../../components/VideoSearch/VideoSearch'
+import { connect } from 'react-redux';
+import { closeVideoSearch } from '../../reducers/videoSearch/actions';
 
-class VideoSearchContainer extends React.Component {
+class VideoSearchContainer extends Component {
     render() {
-        const {topClassName} = this.props;
-        return <VideoSearch topClassName={topClassName} />
+        const { isOpen , dispatchCloseVideoSearch } = this.props;
+        return (
+            <VideoSearch isOpen={isOpen} onClose={dispatchCloseVideoSearch}/>
+        )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-    }
-};
+const mapStateToProps = (state) => ({
+    isOpen: state.videoSearch.isOpen
+})
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-    }
-};
+const mapDispatchToProps = (dispatch) => ({
+    dispatchCloseVideoSearch: () => dispatch(closeVideoSearch())
+})
 
-export default VideoSearchContainer
+export default connect(mapStateToProps, mapDispatchToProps)(VideoSearchContainer)

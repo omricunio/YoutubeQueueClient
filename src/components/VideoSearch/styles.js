@@ -1,14 +1,16 @@
-export default theme => ({
-    searchIcon: {
-        height: "100%",
-        marginRight: theme.spacing(1)
-    },
+export default theme => { 
+    debugger;
+    return {
     container: {
         display: "flex",
         alignItems: "center",
-        padding: theme.spacing(0,0,0,1)
+        justifyContent: "center",
     },
-    inputBase: {
-        width: "90%"
+    card: {
+        width: "80vw",
+        height: "80vh",
+        padding: theme.spacing(1,1,1,1),
+        outline: "none"
+        //backgroundColor: theme.palette.background.default
     }
-});
+}};

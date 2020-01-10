@@ -1,39 +1,32 @@
-import React from "react";
-import {InputBase} from "@material-ui/core";
-import styles from "./styles";
-import withStyles from "@material-ui/core/styles/withStyles";
-import {Search} from "@material-ui/icons";
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import React, { Component } from 'react'
+import { Modal, Card } from '@material-ui/core'
+import { withStyles } from '@material-ui/core/styles';
+import styles from './styles';
+import VideoSearchList from '../VideoSearchList/VideoSearchList';
+import { PropTypes } from 'prop-types';
+import VideoSearchField from '../VideoSearchField/VideoSearchField';
 
-class VideoSearch extends React.Component {
+class VideoSearch extends Component {
+    constructor(){
+        super();
+    }
     render() {
-        const { topClassName, classes } = this.props;
+        const { classes, isOpen, onClose } = this.props
         return (
-            <div className={topClassName}>
-                <div className={classes.container}>
-                    <Search className={classes.searchIcon}/>
-                    <InputBase className={classes.inputBase} placeholder={"Search.."}>
-                    </InputBase>
-                </div>
-            </div>
-        );
+            <Modal open={isOpen} className={classes.container}
+            onClose={onClose}>
+                <Card className={classes.card}>
+                    <VideoSearchField/>
+                    <VideoSearchList/>
+                </Card>
+            </Modal>
+        )
     }
 }
 
+VideoSearch.propType = {
+    isOpen: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired
+}
+
 export default withStyles(styles)(VideoSearch);
-
-
-const top100Films = [
-    { title: 'The Shawshank Redemption', year: 1994 },
-    { title: 'The Godfather', year: 1972 },
-    { title: 'The Godfather: Part II', year: 1974 },
-    { title: 'The Dark Knight', year: 2008 },
-    { title: '12 Angry Men', year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: 'Pulp Fiction', year: 1994 },
-    { title: 'The Lord of the Rings: The Return of the King', year: 2003 },
-    { title: 'The Good, the Bad and the Ugly', year: 1966 },
-    { title: 'Fight Club', year: 1999 },
-    { title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-    { title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 }
-]
