@@ -7,5 +7,8 @@ export default theme => ({
         display: "flex",
         alignItems: "center",
         padding: theme.spacing(0,0,0,1)
+    },
+    inputBase: {
+        width: "90%"
     }
 });

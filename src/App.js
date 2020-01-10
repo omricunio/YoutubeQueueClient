@@ -6,6 +6,7 @@ import { CssBaseline } from "@material-ui/core";
 import './App.css';
 import {toggleDarkMode} from "./reducers/appSettings/actions";
 import {connect} from "react-redux";
+import NewVideosModal from './components/NewVideosModal/NewVideosModal';
 
 function App(props) {
     const themeName = props.theme;
@@ -17,6 +18,7 @@ function App(props) {
       <MuiThemeProvider theme={getMaterialTheme()}>
           <CssBaseline/>
           <TopBarContainer/>
+          <NewVideosModal/>
       </MuiThemeProvider>
   );
 }
