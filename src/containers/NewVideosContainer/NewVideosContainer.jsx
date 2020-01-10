@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import NewVideosModal from '../../components/NewVideosModal/NewVideosModal'
+import { connect } from 'react-redux';
+import { closeVideoSearch } from '../../reducers/videoSearch/actions';
 
-export default class NewVideosContainer extends Component {
+class NewVideosContainer extends Component {
     render() {
         return (
             <NewVideosModal/>
@@ -9,6 +11,12 @@ export default class NewVideosContainer extends Component {
     }
 }
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => ({
+    isOpen: state.isOpen
+})
 
-}
+const mapDispatchToProps = (dispatch) => ({
+    dispatchCloseVideoSearch: () => dispatch(closeVideoSearch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewVideosContainer)

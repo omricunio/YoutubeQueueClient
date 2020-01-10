@@ -4,6 +4,7 @@ import VideoSearchContainer from '../../containers/VideoSearchContainer/VideoSea
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import VideoSearchList from '../VideoSearchList/VideoSearchList';
+import { PropTypes } from 'prop-types';
 
 class NewVideosModal extends Component {
     constructor(){
@@ -23,6 +24,11 @@ class NewVideosModal extends Component {
             </Modal>
         )
     }
+}
+
+NewVideosModal.propType = {
+    isOpen: PropTypes.string.isRequired,
+    onClose: PropTypes.func.isRequired
 }
 
 export default withStyles(styles)(NewVideosModal);
