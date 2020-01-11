@@ -1,5 +1,5 @@
 export const INITIAL_STATE = {
-    isOpen:true,
+    isOpen:false,
     searchValue: "",
     matches: [
         {
