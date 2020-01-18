@@ -7,6 +7,8 @@ export default theme => ({
     },
     title: {
         flexGrow: 1,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        display: "inline",
+        padding: theme.spacing(0,3,0,0)
     }
 });

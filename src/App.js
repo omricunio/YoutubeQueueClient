@@ -1,17 +1,38 @@
 import React from 'react';
-import TopBar from "./components/TopBar/TopBar";
+import TopBarContainer from "./containers/TopBarContainer/TopBarContainer";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import theme from './data/theme';
-import {CssBaseline} from "@material-ui/core";
-import './App.css';
+import * as Themes from './data/theme';
+import { CssBaseline } from "@material-ui/core";
+import {connect} from "react-redux";
+import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchContainer';
+import { keyPressed } from './sagas/keyHandler/actions/actions';
 
-function App() {
-  return (
-      <MuiThemeProvider theme={theme}>
-          <CssBaseline/>
-          <TopBar/>
-      </MuiThemeProvider>
+function App(props) {
+    const { theme, dispatchKeyPressed } = props;
+    const getMaterialTheme = () => {
+        return Themes[theme];
+    };
+    document.addEventListener('keydown', dispatchKeyPressed);
+
+    return (
+        <MuiThemeProvider theme={getMaterialTheme()}>
+            <CssBaseline/>
+            <TopBarContainer/>
+            <VideoSearchContainer/>
+        </MuiThemeProvider>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        theme: state.appSettings.theme
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatchKeyPressed: (e) => dispatch(keyPressed(e))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
