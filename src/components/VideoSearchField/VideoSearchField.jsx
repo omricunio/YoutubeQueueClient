@@ -6,12 +6,12 @@ import {Search} from "@material-ui/icons";
 
 class VideoSearchField extends React.Component {
     render() {
-        const { topClassName, classes } = this.props;
+        const { searchValue, onSearchValueChanged, classes } = this.props;
         return (
             <div>
                 <div className={classes.container}>
                     <Search className={classes.searchIcon}/>
-                    <InputBase className={classes.inputBase} placeholder={"Search.."}>
+                    <InputBase autoFocus className={classes.inputBase} value={searchValue} onChange={onSearchValueChanged} placeholder={"Search.."}>
                     </InputBase>
                 </div>
             </div>

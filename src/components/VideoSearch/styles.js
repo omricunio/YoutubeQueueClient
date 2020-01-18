@@ -9,7 +9,8 @@ export default theme => {
         width: "80vw",
         height: "80vh",
         padding: theme.spacing(1,1,1,1),
-        outline: "none"
-        //backgroundColor: theme.palette.background.default
+        outline: "none",
+        display: "flex",
+        flexFlow: "column"
     }
 }};

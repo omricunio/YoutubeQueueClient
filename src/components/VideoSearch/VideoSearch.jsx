@@ -2,23 +2,23 @@ import React, { Component } from 'react'
 import { Modal, Card } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import VideoSearchList from '../VideoSearchList/VideoSearchList';
 import { PropTypes } from 'prop-types';
-import VideoSearchField from '../VideoSearchField/VideoSearchField';
+import VSFieldContainer from '../../containers/VSFieldContainer/VSFieldContainer';
+import VSListContainer from '../../containers/VSListContainer/VSListContainer';
+import CenteredLoading from '../CenteredLoading/CenteredLoading';
 
 class VideoSearch extends Component {
-    constructor(){
-        super();
-    }
     render() {
-        const { classes, isOpen, onClose } = this.props
+        const { classes, isOpen, isLoading, onClose } = this.props
         return (
             <Modal open={isOpen} className={classes.container}
             onClose={onClose}>
-                <Card className={classes.card}>
-                    <VideoSearchField/>
-                    <VideoSearchList/>
-                </Card>
+                <CenteredLoading hidden={!isLoading}>
+                    <Card className={classes.card}>
+                        <VSFieldContainer/>
+                        <VSListContainer/>
+                    </Card>
+                </CenteredLoading>
             </Modal>
         )
     }

@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
-import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
-import Image from 'material-ui-image';
+import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
 import styles from './styles'
 import { withStyles } from '@material-ui/core/styles';
 import { PropTypes } from 'prop-types';
 import StyledImage from '../StyledImage/StyledImage';
 
 class VideoSearchItem extends Component {
+
+    constructor(props) {
+        super(props);
+        this.ref = React.createRef();
+    }
+
+    componentDidUpdate() {
+        const { selected } = this.props
+        if(selected) {
+            this.ref.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
+    }
+
     render() {
-        const { classes, selected, primaryText, secondaryText, iconLink } = this.props;        
+        const { classes, selected, primaryText, secondaryText, iconLink } = this.props;
+  
         return (
-            <ListItem selected={selected}>
+            <ListItem selected={selected} ref={this.ref}>
                 <ListItemIcon>
                     <StyledImage 
                         src={iconLink}/>                           

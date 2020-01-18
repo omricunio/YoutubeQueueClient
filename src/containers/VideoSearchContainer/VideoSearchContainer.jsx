@@ -5,15 +5,16 @@ import { closeVideoSearch } from '../../reducers/videoSearch/actions';
 
 class VideoSearchContainer extends Component {
     render() {
-        const { isOpen , dispatchCloseVideoSearch } = this.props;
+        const { isOpen, isLoading, dispatchCloseVideoSearch } = this.props;
         return (
-            <VideoSearch isOpen={isOpen} onClose={dispatchCloseVideoSearch}/>
+            <VideoSearch isOpen={isOpen} isLoading={isLoading} onClose={dispatchCloseVideoSearch}/>
         )
     }
 }
 
 const mapStateToProps = (state) => ({
-    isOpen: state.videoSearch.isOpen
+    isOpen: state.videoSearch.isOpen,
+    isLoading: state.videoSearch.isLoading
 })
 
 const mapDispatchToProps = (dispatch) => ({

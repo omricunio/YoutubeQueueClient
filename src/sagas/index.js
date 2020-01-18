@@ -1,5 +1,7 @@
 import keyHandler from './keyHandler/index';
+import videoSearchSaga from './videoSearch/index';
+import { all } from 'redux-saga/effects'
 
 export default function* rootSaga() {
-    yield keyHandler()
+    yield all([videoSearchSaga(), keyHandler()])
 }   

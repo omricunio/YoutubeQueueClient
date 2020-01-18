@@ -1,29 +1,43 @@
 import { handleLetterPress } from "./handlers/letterHandler";
 import { handleEscapePress } from "./handlers/escapeHandler";
+import { handleArrowPress } from "./handlers/handleArrowPress";
 
 export default [
     {
-        name: "Special Letters",
-        startKey: 186,
-        endKey: 192,
-        handler: handleLetterPress
-    },
-    {
         name: "Letters",
-        startKey: 65,
-        endKey: 90,
-        handler: handleLetterPress
-    },
-    {
-        name: "Brackets",
-        startKey: 65,
-        endKey: 90,
+        keys: {
+            186:192,
+            65:90
+        },
+        preventsDefault: false,
         handler: handleLetterPress
     },
     {
         name: "Escape",
-        startKey: 27,
-        endKey: 27,
+        keys: {
+            27:27
+        },
+        preventsDefault: false,
         handler: handleEscapePress
+    },
+    {
+        name: "ArrowDown",
+        keys: {
+            40:40
+        },
+        preventsDefault: true,
+        handler: function*() {
+            yield handleArrowPress(-1)
+        }
+    },
+    {
+        name: "ArrowUp",
+        keys: {
+            38:38
+        },
+        preventsDefault: true,
+        handler: function*() {
+            yield handleArrowPress(1)
+        }
     }
 ];

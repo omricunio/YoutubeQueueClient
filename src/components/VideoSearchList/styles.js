@@ -1,6 +1,6 @@
 export default theme => ({
     list: {
-        maxHeight: "100%",
+        flexGrow: 1,
         overflow: "auto"
     }
 })
