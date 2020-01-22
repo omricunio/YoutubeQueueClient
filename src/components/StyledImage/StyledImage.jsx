@@ -4,14 +4,16 @@ import { PropTypes } from 'prop-types';
 
 export default class StyledImage extends Component {
     render() {
-        const { src } = this.props;
+        const { src, className } = this.props;
         return (
-            <Image
-                style={{width: "100%", height: "100%"}} 
-                color="rgba(0, 0, 0, 0)"
-                imageStyle={{objectFit: "contain"}}
-                src={src}
-            />
+            <div className={className}>
+                <Image
+                    style={{maxWidth: "100%", maxHeight: "100%"}} 
+                    color="rgba(0, 0, 0, 0)"
+                    imageStyle={{objectFit: "contain"}}
+                    src={src}
+                />
+            </div>
         )
     }
 }

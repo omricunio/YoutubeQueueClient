@@ -28,7 +28,7 @@ class VideoSearchItem extends Component {
         return (
             <ListItem selected={selected} ref={this.ref}>
                 <ListItemIcon>
-                    <StyledImage 
+                    <StyledImage className={classes.icon}
                         src={iconLink}/>                           
                 </ListItemIcon>
                 <ListItemText className={classes.listItem}
