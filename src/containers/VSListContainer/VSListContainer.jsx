@@ -5,7 +5,6 @@ import VideoSearchList from '../../components/VideoSearchList/VideoSearchList';
 class VSListContainer extends Component {
     render() {
         const { searchResults } = this.props;
-        console.log(searchResults);
         return (
             <VideoSearchList searchResults={searchResults}/>
         )
