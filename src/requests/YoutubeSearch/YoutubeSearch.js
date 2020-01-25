@@ -12,7 +12,7 @@ export default class YoutubeSearch {
         const formattedItems = items.filter((item)=>item.id.videoId)
                                 .map((item)=>(
                                     {   
-                                        id: item.id.videoId,
+                                        url: `https://youtube.com/watch?v=${item.id.videoId}`,
                                         title: item.snippet.title,
                                         author: item.snippet.channelTitle, 
                                         thumbnails: item.snippet.thumbnails,

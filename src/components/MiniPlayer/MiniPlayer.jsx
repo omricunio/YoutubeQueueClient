@@ -2,35 +2,57 @@ import React, { Component } from 'react'
 import styles from './styles';
 import { AppBar, Typography, IconButton, Toolbar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { LinearProgress } from '@material-ui/core';
-import { PlayArrow } from '@material-ui/icons';
+import { PlayArrow, Pause } from '@material-ui/icons';
 import StyledImage from '../StyledImage/StyledImage';
+import ReactPlayer from 'react-player';
+import ProgressBar from '../ProgressBar/ProgressBar';
 
 class MiniPlayer extends Component {
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+    ref = player => {
+        this.player = player
+    }
+
     render() {
-        const { classes } = this.props;
+        const { classes, progress, buffer, currentItem, playingState, onProgressChange, onBufferChange, onPlayingStateChange } = this.props;
+        this.player && Math.abs((this.player.getCurrentTime()/this.player.getDuration()) - (progress/100)) > 0.001 && this.player.seekTo(progress/100);
         return (
             <AppBar className={classes.bottomBar} color="secondary">
-                <LinearProgress variant="buffer" value={5} valueBuffer={8}/>
+                <ProgressBar progress={progress} buffer={buffer} onProgressChange={(progress)=>{
+                    onProgressChange(progress);
+                }}/>
                 <Toolbar>
                     <div className={classes.imageContainer}>
-                        <StyledImage src="https://i.ytimg.com/an_webp/k2qgadSvNyU/mqdefault_6s_480x270.webp?du=3000&sqp=CNj0kfEF&rs=AOn4CLAyObH8ki5h99SgkMtNXLdW9FB6Tg"/>
+                        <StyledImage src={currentItem.thumbnails.default.url}/>
                     </div>
-                    <IconButton className={classes.playButton}>
-                        <PlayArrow/>
+                    <IconButton className={classes.playButton} onClick={()=>{onPlayingStateChange()}}>
+                        { playingState ?  <Pause/> : <PlayArrow/>}
                     </IconButton>
                     <div style={{display: "block"}}>
                         <Typography className={classes.main}>
-                            Look at her now
+                            {currentItem.title}
                         </Typography>
                         <Typography color={"textSecondary"} className={classes.main}>
-                            Selena Gomez
+                            {currentItem.author}
                         </Typography>
                     </div>
+                    <ReactPlayer playing={playingState ? true : false } hidden 
+                        ref={this.ref} 
+                        onProgress={(p)=>{ 
+                            onProgressChange(p.played*100);
+                            onBufferChange(p.loaded*100); 
+                        }} 
+                        url={currentItem.url}
+                    />
                 </Toolbar>
             </AppBar>
         )
     }
 }
+
 
 export default withStyles(styles)(MiniPlayer);

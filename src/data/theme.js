@@ -19,6 +19,9 @@ export const dark = createMuiTheme({
         secondary: {
             main: colors.darkGray,
         },
+        transparentSlider: {
+            trackColor: '#00FFFFFF',
+        }
     }
 });
 

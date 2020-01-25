@@ -6,7 +6,7 @@ import { CssBaseline } from "@material-ui/core";
 import {connect} from "react-redux";
 import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchContainer';
 import { keyPressed } from './sagas/keyHandler/actions/actions';
-import MiniPlayer from './components/MiniPlayer/MiniPlayer';
+import MiniPlayerContainer from './containers/MiniPlayerContainer/MiniPlayerContainer';
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
@@ -20,7 +20,7 @@ function App(props) {
             <CssBaseline/>
             <TopBarContainer/>
             <VideoSearchContainer/>
-            <MiniPlayer/>
+            <MiniPlayerContainer/>
         </MuiThemeProvider>
   );
 }
