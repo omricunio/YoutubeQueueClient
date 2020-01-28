@@ -1,5 +1,6 @@
 export default theme => ({
     bottomBar: {
+        position: "sticky",
         top: "auto",
         bottom: 0,
         flexGrow: 1

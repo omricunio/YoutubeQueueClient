@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-
 class QueueItem extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes, name, author, image } = this.props;
         return (
             <Card>
                 <CardHeader
                     avatar={
-                    <Avatar aria-label="recipe" /*className={classes.avatar}*/>
-                        R
+                    <Avatar>
+                        Se
                     </Avatar>
                     }
                     //action={}

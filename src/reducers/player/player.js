@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -16,6 +16,14 @@ const player = (state = INITIAL_STATE, action) => {
             }
         case SET_CURRENT_ITEM:
             return {...state, currentItem: action.payload}
+        case ADD_NEW_ITEM:
+            if(action.position) {
+                state.items.splice(action.position, action.item);
+            }
+            else {
+                state.items.push(action.item);
+            }
+            return {...state}
         default:
             return state;
     }

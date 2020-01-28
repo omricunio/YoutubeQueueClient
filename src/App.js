@@ -7,6 +7,7 @@ import {connect} from "react-redux";
 import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchContainer';
 import { keyPressed } from './sagas/keyHandler/actions/actions';
 import MiniPlayerContainer from './containers/MiniPlayerContainer/MiniPlayerContainer';
+import QueueList from './components/QueueList/QueueList';
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
@@ -20,6 +21,7 @@ function App(props) {
             <CssBaseline/>
             <TopBarContainer/>
             <VideoSearchContainer/>
+            <QueueList/>
             <MiniPlayerContainer/>
         </MuiThemeProvider>
   );

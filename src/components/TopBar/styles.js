@@ -1,5 +1,8 @@
 export default theme => ({
     root: {
+        position: "sticky",
+        zIndex: 1,
+        top: 0,
         flexGrow: 1,
     },
     addButton: {

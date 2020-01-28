@@ -3,6 +3,7 @@ export const INITIAL_STATE = {
     progress: 0,
     buffer: 0,
     totalTime: 0,
+    items: [],
     currentItem: {
         title: "Put It All On Me",
         author: "Ed Sheeran",
