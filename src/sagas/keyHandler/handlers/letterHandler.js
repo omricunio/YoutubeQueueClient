@@ -5,6 +5,7 @@ import { select } from 'redux-saga/effects';
 export function* handleLetterPress(){
     const isOpen = yield select((state) => state.videoSearch.isOpen);
     if(!isOpen){
+        document.activeElement.blur()
         yield put(openVideoSearch())
     }
 }

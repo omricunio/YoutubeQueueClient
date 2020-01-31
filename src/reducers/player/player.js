@@ -27,7 +27,7 @@ const player = (state = INITIAL_STATE, action) => {
             return {...state, items}
         case SKIP_CURRENT_ITEM: {
             let items = Object.create(state.items);
-            if(items[0]){
+            if(items.length > 0){
                 const newCurrentItem = items.shift();
                 return {...state, currentItem: newCurrentItem, items}
             }
