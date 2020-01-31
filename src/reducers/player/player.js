@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -25,6 +25,14 @@ const player = (state = INITIAL_STATE, action) => {
                 items.push(action.item);
             }
             return {...state, items}
+        case SKIP_CURRENT_ITEM: {
+            let items = Object.create(state.items);
+            if(items[0]){
+                const newCurrentItem = items.shift();
+                return {...state, currentItem: newCurrentItem, items}
+            }
+            return {...state}
+        }
         default:
             return state;
     }

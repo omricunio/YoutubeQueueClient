@@ -3,7 +3,7 @@ import { SEARCH_VALUE_CHANGED } from '../../reducers/videoSearch/actionTypes';
 import YoutubeSearch from '../../requests/YoutubeSearch/YoutubeSearch';
 import { changeSearchResults, changeSelectedSearchedItem } from '../../reducers/videoSearch/actions';
 import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID } from './actionTypes';
-import { setCurrentItem } from '../../reducers/player/actions';
+import { setCurrentItem, togglePlayingState } from '../../reducers/player/actions';
 const youtubeSearch = new YoutubeSearch();
 
 function* searchMatches(action) {
@@ -38,6 +38,7 @@ function* setCurrentPlayingItemById(action) {
     const item = items[itemId];
 
     yield put(setCurrentItem(item));
+    yield put(togglePlayingState(true));
 }
 
 export default function*() {

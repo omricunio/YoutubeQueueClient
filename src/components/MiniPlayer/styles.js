@@ -7,6 +7,9 @@ export default theme => ({
     playButton: {
         marginLeft: theme.spacing(2)
     },
+    skipButton: {
+        marginLeft: theme.spacing(0.1)
+    },
     main: {
         marginLeft: theme.spacing(1),
         flexGrow: 1
