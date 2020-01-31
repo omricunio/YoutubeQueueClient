@@ -1,4 +1,7 @@
 export default theme => ({
+    root: {
+        position: "relative"
+    },
     slider: {
         position: "absolute",
         top: "-11px",

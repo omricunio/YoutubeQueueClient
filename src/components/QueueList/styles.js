@@ -1,6 +1,8 @@
 export default theme => ({
     root: {
-        margin: "5vh 30vw"
+        padding: "5vh 30vw",
+        flex: 1,
+        overflow: "auto"
     },
     item: {
         marginBottom: "5vh"

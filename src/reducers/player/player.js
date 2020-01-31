@@ -17,13 +17,14 @@ const player = (state = INITIAL_STATE, action) => {
         case SET_CURRENT_ITEM:
             return {...state, currentItem: action.payload}
         case ADD_NEW_ITEM:
+            let items = Object.create(state.items);
             if(action.position) {
-                state.items.splice(action.position, action.item);
+                items.splice(action.position, action.item);
             }
             else {
-                state.items.push(action.item);
+                items.push(action.item);
             }
-            return {...state}
+            return {...state, items}
         default:
             return state;
     }

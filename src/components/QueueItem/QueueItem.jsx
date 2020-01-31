@@ -10,17 +10,16 @@ class QueueItem extends Component {
                 <CardHeader
                     avatar={
                     <Avatar>
-                        Se
+                        {name[0]}
                     </Avatar>
                     }
                     //action={}
-                    title="Shrimp and Chorizo Paella"
-                    subheader="September 14, 2016"
+                    title={name}
+                    subheader={author}
                 />
                 <CardMedia
                     className={classes.image}
-                    image="https://i.ytimg.com/vi/ia1iuXbEaYQ/hqdefault.jpg"
-                    title="Paella dish"
+                    image={image}
                 />
                 <CardContent>
                     <Typography variant="body2" color="textSecondary" component="p">
