@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { Card, CardHeader, Avatar, IconButton, CardMedia, CardContent, Typography } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
+import { DeleteOutlined } from '@material-ui/icons';
 class QueueItem extends Component {
     render() {
-        const { classes, name, author, image } = this.props;
+        const { classes, name, author, image, onDelete, index } = this.props;
         return (
             <Card>
                 <CardHeader
@@ -13,20 +14,18 @@ class QueueItem extends Component {
                         {name[0]}
                     </Avatar>
                     }
-                    //action={}
+                    action={
+                    <IconButton onClick={()=>onDelete(index)}>
+                        <DeleteOutlined/>
+                    </IconButton>
+                    }
                     title={name}
                     subheader={author}
                 />
                 <CardMedia
                     className={classes.image}
                     image={image}
-                />
-                <CardContent>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                    This impressive paella is a perfect party dish and a fun meal to cook together with your
-                    guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                    </Typography>
-                </CardContent>                
+                />              
             </Card>
         )
     }

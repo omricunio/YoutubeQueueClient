@@ -1,18 +1,18 @@
 import { handleLetterPress } from "./handlers/letterHandler";
 import { handleEscapePress } from "./handlers/escapeHandler";
 import { handleArrowPress } from "./handlers/handleArrowPress";
-import { handlePPress } from "./handlers/handlePPress";
+import { handleAltPress } from "./handlers/handleAltPress";
 import { handleEnterPress } from "./handlers/enterHandler";
 
 export default [
     {
-        name: "P",
+        name: "Alt",
         keys: {
-            80:80
+            18:18
         },
         preventsDefault: false,
         handler: function*() {
-            yield handlePPress();
+            yield handleAltPress();
         }
     },
     {

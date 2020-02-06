@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { ListItem, ListItemText, ListItemIcon } from '@material-ui/core'
+import { ListItem, ListItemText, ListItemIcon, IconButton } from '@material-ui/core'
 import styles from './styles'
 import { withStyles } from '@material-ui/core/styles';
 import { PropTypes } from 'prop-types';
 import StyledImage from '../StyledImage/StyledImage';
+import { PlayArrow, Pause, Add } from '@material-ui/icons';
 
 class VideoSearchItem extends Component {
 
@@ -23,7 +24,7 @@ class VideoSearchItem extends Component {
     }
 
     render() {
-        const { classes, selected, primaryText, secondaryText, iconLink } = this.props;
+        const { classes, selected, primaryText, secondaryText, iconLink, played, onPlayPress, onPausePress, onAddPress, index } = this.props;
   
         return (
             <ListItem selected={selected} ref={this.ref}>
@@ -35,6 +36,12 @@ class VideoSearchItem extends Component {
                     primary={primaryText}
                     secondary={secondaryText}
                 />
+                <IconButton onClick={ ()=>onAddPress(index) }>
+                    <Add/>
+                </IconButton>
+                <IconButton onClick={ played ? onPausePress : ()=>onPlayPress(index)}>
+                    { played ? <Pause/> : <PlayArrow/> }
+                </IconButton>
             </ListItem>
         )
     }

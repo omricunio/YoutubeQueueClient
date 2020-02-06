@@ -27,7 +27,7 @@ class MiniPlayer extends Component {
                 }}/>
                 <Toolbar>
                     <div className={classes.imageContainer}>
-                        {currentItem ? <StyledImage src={currentItem.thumbnails.default.url}/> : ""}
+                        { currentItem ? <StyledImage src={currentItem.thumbnails.default.url}/> : ""}
                     </div>
                     <IconButton className={classes.playButton} onClick={()=>{onPlayingStateChange()}}>
                         { playingState ?  <Pause/> : <PlayArrow/>}

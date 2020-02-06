@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
 import { KEY_PRESSED } from './actions/actionTypes';
 import keyOptions from './keyOptions';
 

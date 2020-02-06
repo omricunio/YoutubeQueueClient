@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX} from "./actionTypes";
 
 export function setProgress(payload) {
     return {
@@ -39,5 +39,12 @@ export function addItem(item, position=null) {
         type: ADD_NEW_ITEM,
         item,
         position
+    }
+}
+
+export function deleteItemByIndex(index) {
+    return {
+        type: DELETE_ITEM_BY_INDEX,
+        index
     }
 }

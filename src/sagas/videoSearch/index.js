@@ -1,9 +1,9 @@
 import { takeLatest, call, put, select, takeEvery } from 'redux-saga/effects';
 import { SEARCH_VALUE_CHANGED } from '../../reducers/videoSearch/actionTypes';
 import YoutubeSearch from '../../requests/YoutubeSearch/YoutubeSearch';
-import { changeSearchResults, changeSelectedSearchedItem } from '../../reducers/videoSearch/actions';
-import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID } from './actionTypes';
-import { setCurrentItem, togglePlayingState } from '../../reducers/player/actions';
+import { changeSearchResults, changeSelectedSearchedItem, changePlayedItemFromSearch, closeVideoSearch } from '../../reducers/videoSearch/actions';
+import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH } from './actionTypes';
+import { setCurrentItem, togglePlayingState, addItem } from '../../reducers/player/actions';
 const youtubeSearch = new YoutubeSearch();
 
 function* searchMatches(action) {
@@ -38,11 +38,31 @@ function* setCurrentPlayingItemById(action) {
     const item = items[itemId];
 
     yield put(setCurrentItem(item));
+    yield put(changePlayedItemFromSearch(itemId));
     yield put(togglePlayingState(true));
+}
+
+function* addItemToQueueBySearchIndex(action) {
+    const items = yield select((state) => state.videoSearch.searchResults);
+    const itemToAdd = items[action.index];
+    yield put(addItem(itemToAdd));
+}
+
+function* addItemAndCloseSearch(action) {
+    yield addItemToQueueBySearchIndex(action);
+    yield put(closeVideoSearch());
+}
+
+function* pausePlayedItemInSearch() {
+    yield put(changePlayedItemFromSearch());
+    yield put(togglePlayingState(false));
 }
 
 export default function*() {
     yield takeLatest(SEARCH_VALUE_CHANGED, searchMatches);
     yield takeEvery(SHIFT_SELECTED_SEARCHED_ITEM, shiftSelectedSearchedItem);
     yield takeEvery(SET_CURRENT_PLAYING_ITEM_BY_ID, setCurrentPlayingItemById);
+    yield takeEvery(PAUSE_PLAYED_ITEM_IN_SEARCH, pausePlayedItemInSearch);
+    yield takeEvery(ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, addItemToQueueBySearchIndex);
+    yield takeEvery(ADD_ITEM_AND_CLOSE_SEARCH, addItemAndCloseSearch);
 }

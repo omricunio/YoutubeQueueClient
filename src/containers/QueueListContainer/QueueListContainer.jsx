@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import QueueList from '../../components/QueueList/QueueList';
+import { deleteItemByIndex } from '../../reducers/player/actions';
 
 class QueueListContainer extends Component {
     render() {
-        const { items } = this.props;
+        const { items, dispatchDeleteItemByIndex } = this.props;
         return (
-            <QueueList items={items}/>
+            <QueueList items={items} dispatchDeleteItemByIndex={dispatchDeleteItemByIndex}/>
         )
     }
 }
@@ -19,6 +20,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        dispatchDeleteItemByIndex: (index) => dispatch(deleteItemByIndex(index))
     }
 };
 

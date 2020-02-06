@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -22,7 +22,13 @@ const player = (state = INITIAL_STATE, action) => {
                 items.splice(action.position, action.item);
             }
             else {
-                items.push(action.item);
+                if(state.currentItem) {
+                    items.push(action.item);
+                    return {...state, items}
+                }
+                else {
+                    return {...state, currentItem: action.item}
+                }
             }
             return {...state, items}
         case SKIP_CURRENT_ITEM: {
@@ -32,6 +38,11 @@ const player = (state = INITIAL_STATE, action) => {
                 return {...state, currentItem: newCurrentItem, items}
             }
             return {...state}
+        }
+        case DELETE_ITEM_BY_INDEX: {
+            let items = Object.create(state.items);
+            items.splice(action.index,1);
+            return {...state, items}
         }
         default:
             return state;

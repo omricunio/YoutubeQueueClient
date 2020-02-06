@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
     buffer: 0,
     totalTime: 0,
     items: [],
+    currentItem: undefined
     // currentItem: {
     //     title: "Put It All On Me",
     //     author: "Ed Sheeran",
