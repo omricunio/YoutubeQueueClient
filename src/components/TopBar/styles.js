@@ -1,6 +1,8 @@
 export default theme => ({
     root: {
-        flexGrow: 1,
+        position: "static",
+        zIndex: 1,
+        top: 0
     },
     addButton: {
         marginRight: theme.spacing(2),

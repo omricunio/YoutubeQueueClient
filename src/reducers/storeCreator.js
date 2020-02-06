@@ -5,7 +5,7 @@ import rootSaga from "../sagas";
 export default function storeCreator() {
     const sagaMiddleware = createSagaMiddleware();
     const toCompose = [applyMiddleware(sagaMiddleware)];
-    window.__REDUX_DEVTOOLS_EXTENSION__ && toCompose.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+    window.__REDUX_DEVTOOLS_EXTENSION__ && toCompose.push(window.__REDUX_DEVTOOLS_EXTENSION__({trace: true}));
     const store = createStore(rootReducer,
         compose(
             ...toCompose

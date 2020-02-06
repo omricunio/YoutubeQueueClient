@@ -7,16 +7,26 @@ import { PropTypes } from 'prop-types';
 
 class VideoSearchList extends Component {
     render() {
-        const { classes, searchResults } = this.props;
+        const { classes, searchResults, onChangePlayedItem, onPause, onAdd } = this.props;
         return (
             <List className={classes.list}>
                 { 
-                    searchResults.map(item => 
-                    <VideoSearchItem 
-                        primaryText={item.title} 
-                        secondaryText={item.author} 
-                        iconLink={item.thumbnails.default.url}
-                        selected={item.isSelected}/>) 
+                    searchResults.map((item, index) => 
+                        (
+                            <VideoSearchItem
+                                styles={classes.item}
+                                index={index} 
+                                primaryText={item.title} 
+                                secondaryText={item.author} 
+                                iconLink={item.thumbnails.default.url}
+                                selected={item.isSelected}
+                                played={item.isPlayed}
+                                onPlayPress={onChangePlayedItem}
+                                onPausePress={onPause}
+                                onAddPress={onAdd}
+                            />
+                        )
+                    ) 
                 }
             </List>
         )

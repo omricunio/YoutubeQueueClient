@@ -2,10 +2,13 @@ export default theme => ({
     bottomBar: {
         top: "auto",
         bottom: 0,
-        flexGrow: 1
+        position: "static"
     },
     playButton: {
         marginLeft: theme.spacing(2)
+    },
+    skipButton: {
+        marginLeft: theme.spacing(0.1)
     },
     main: {
         marginLeft: theme.spacing(1),
