@@ -8,6 +8,7 @@ import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchC
 import { keyPressed } from './sagas/keyHandler/actions/actions';
 import MiniPlayerContainer from './containers/MiniPlayerContainer/MiniPlayerContainer';
 import QueueListContainer from './containers/QueueListContainer/QueueListContainer';
+import PlayerContainer from './containers/PlayerContainer/PlayerContainer';
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
@@ -23,6 +24,7 @@ function App(props) {
             <VideoSearchContainer/>
             <QueueListContainer/>
             <MiniPlayerContainer/>
+            <PlayerContainer/>
         </MuiThemeProvider>
   );
 }

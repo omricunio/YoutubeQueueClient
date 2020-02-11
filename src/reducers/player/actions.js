@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE} from "./actionTypes";
 
 export function setProgress(payload) {
     return {
@@ -46,5 +46,12 @@ export function deleteItemByIndex(index) {
     return {
         type: DELETE_ITEM_BY_INDEX,
         index
+    }
+}
+
+export function toggelePlayerOpenState(isOpen) {
+    return {
+        type: TOGGLE_PLAYER_OPEN_STATE,
+        isOpen
     }
 }

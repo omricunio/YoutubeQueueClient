@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -8,7 +8,7 @@ const player = (state = INITIAL_STATE, action) => {
         case SET_BUFFER:
             return {...state, buffer: action.payload}
         case TOGGLE_PLAYING_STATE:
-            if(action.payload) {
+            if(action.payload !== undefined) {
                 return {...state, playingState: action.payload}
             }
             else {
@@ -43,6 +43,12 @@ const player = (state = INITIAL_STATE, action) => {
             let items = Object.create(state.items);
             items.splice(action.index,1);
             return {...state, items}
+        }
+        case TOGGLE_PLAYER_OPEN_STATE: {
+            if(action.isOpen !== undefined) {
+                return {...state, isOpen: state.isOpen }
+            }
+            return {...state, isOpen: !action.isOpen}
         }
         default:
             return state;
