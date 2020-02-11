@@ -35,7 +35,7 @@ const player = (state = INITIAL_STATE, action) => {
             let items = Object.create(state.items);
             if(items.length > 0){
                 const newCurrentItem = items.shift();
-                return {...state, currentItem: newCurrentItem, items}
+                return {...state, currentItem: newCurrentItem, items, progress: 0, buffer: 0}
             }
             return {...state}
         }
