@@ -6,9 +6,7 @@ import { CssBaseline } from "@material-ui/core";
 import {connect} from "react-redux";
 import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchContainer';
 import { keyPressed } from './sagas/keyHandler/actions/actions';
-import MiniPlayerContainer from './containers/MiniPlayerContainer/MiniPlayerContainer';
-import QueueListContainer from './containers/QueueListContainer/QueueListContainer';
-import PlayerContainer from './containers/PlayerContainer/PlayerContainer';
+import MainContainer from './containers/MainContainer/MainContainer';
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
@@ -22,9 +20,7 @@ function App(props) {
             <CssBaseline/>
             <TopBarContainer/>
             <VideoSearchContainer/>
-            <QueueListContainer/>
-            <MiniPlayerContainer/>
-            <PlayerContainer/>
+            <MainContainer/>
         </MuiThemeProvider>
   );
 }

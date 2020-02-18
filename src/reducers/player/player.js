@@ -48,7 +48,7 @@ const player = (state = INITIAL_STATE, action) => {
             if(action.isOpen !== undefined) {
                 return {...state, isOpen: state.isOpen }
             }
-            return {...state, isOpen: !action.isOpen}
+            return {...state, isOpen: !state.isOpen}
         }
         default:
             return state;

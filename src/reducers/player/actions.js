@@ -49,7 +49,7 @@ export function deleteItemByIndex(index) {
     }
 }
 
-export function toggelePlayerOpenState(isOpen) {
+export function togglePlayerOpenState(isOpen) {
     return {
         type: TOGGLE_PLAYER_OPEN_STATE,
         isOpen
