@@ -20,7 +20,7 @@ code {
 
 
 
-iframe {
+.react-player iframe {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -30,12 +30,12 @@ iframe {
 }
 
 @media (min-aspect-ratio: 16/9) {
-  iframe {
+  .react-player iframe {
     height: 56.25vw;
   }
 }
 @media (max-aspect-ratio: 16/9) {
-  iframe {
+  .react-player iframe {
     width: 177.78vh;
   }
 }
