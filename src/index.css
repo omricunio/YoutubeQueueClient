@@ -18,7 +18,9 @@ code {
     monospace;
 }
 
-
+.player-slider .MuiLinearProgress-dashed {
+  display: none;
+}
 
 .react-player iframe {
   position: absolute;

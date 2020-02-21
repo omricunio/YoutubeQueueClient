@@ -3,7 +3,8 @@ export default theme => ({
         backgroundColor: theme.palette.secondary.main,
         width: "100vw",
         transition: "display 2s ease out",
-        height: "100%"
+        height: "100%",
+        overflow: "none"
     },
     playerClosed: {
         display: "none"

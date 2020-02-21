@@ -8,7 +8,7 @@ class ProgressBar extends React.Component {
     render() {
         const { classes, progress, buffer, onProgressChange } = this.props
         return (
-            <div className={classes.root}>
+            <div className={classes.root+' player-slider'}>
                 <Slider className={classes.slider} onChange={(e, pro)=>{onProgressChange(pro)}} value={progress}/>
                 <LinearProgress className={classes.progressBar} variant="buffer" value={progress} valueBuffer={buffer}/>
             </div>
