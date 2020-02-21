@@ -4,7 +4,6 @@ import { AppBar, Typography, IconButton, Toolbar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { PlayArrow, Pause, SkipNext, ExpandLess, ExpandMore } from '@material-ui/icons';
 import StyledImage from '../StyledImage/StyledImage';
-import ReactPlayer from 'react-player';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 class MiniPlayer extends Component {
@@ -14,7 +13,7 @@ class MiniPlayer extends Component {
     }
 
     ref = player => {
-        this.player = player
+        this.player = player;
     }
 
     render() {
@@ -25,13 +24,11 @@ class MiniPlayer extends Component {
                 currentItem, 
                 playingState, 
                 onProgressChange, 
-                onBufferChange, 
                 onPlayingStateChange, 
                 onSkipSong,
                 onToggleExpand,
-                isOpen 
+                isOpen             
             } = this.props;
-        this.player && Math.abs((this.player.getCurrentTime()/this.player.getDuration()) - (progress/100)) > 0.001 && this.player.seekTo(progress/100);
         return (
             <AppBar className={classes.bottomBar} color="secondary">
                 <ProgressBar progress={progress} buffer={buffer} onProgressChange={(progress)=>{
@@ -58,17 +55,6 @@ class MiniPlayer extends Component {
                     <IconButton onClick={onToggleExpand}>
                         { isOpen ? <ExpandMore/> : <ExpandLess/> }
                     </IconButton>
-                    <ReactPlayer playing={playingState ? true : false } hidden 
-                        ref={this.ref} 
-                        onProgress={(p)=>{ 
-                            onProgressChange(p.played*100);
-                            onBufferChange(p.loaded*100); 
-                        }}
-                        onEnded={()=>{
-                            onSkipSong();
-                        }} 
-                        url={currentItem ? currentItem.url : ""}
-                    />
                 </Toolbar>
             </AppBar>
         )

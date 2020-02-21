@@ -4,7 +4,8 @@ import QueueListContainer from '../../containers/QueueListContainer/QueueListCon
 import MiniPlayerContainer from '../../containers/MiniPlayerContainer/MiniPlayerContainer';
 import styles from './styles';
 import { withStyles } from '@material-ui/core/styles';
-import FullSizePlayer from '../FullSizePlayer/FullSizePlayer';
+import FullSizePlayerContainer from '../../containers/FullSizePlayerContainer/FullSizePlayerContainer';
+
 class Main extends Component {
     render() {
         const { classes, isPlayerOpen } = this.props;
@@ -15,7 +16,7 @@ class Main extends Component {
                 </div>
                 <MiniPlayerContainer/>
                 <div className={ classes.display + ' '+ (isPlayerOpen ? classes.opened : classes.player) }>
-                    <FullSizePlayer/>
+                    <FullSizePlayerContainer/>
                 </div>
             </div>
         )

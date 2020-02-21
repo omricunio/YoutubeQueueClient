@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import MiniPlayer from '../../components/MiniPlayer/MiniPlayer';
-import { setProgress, setBuffer, togglePlayingState, skipCurrentItem, togglePlayerOpenState } from '../../reducers/player/actions';
+import { setProgress, togglePlayingState, skipCurrentItem, togglePlayerOpenState } from '../../reducers/player/actions';
 class MiniPlayerContainer extends Component {
     render() {
-        const { progress, buffer, playingState, currentItem, dispatchSetProgress, dispatchSetBuffer, dispatchTogglePlayingState, dispatchSkipCurrentItem, dispatchTogglePlayerOpenState, isOpen } = this.props; 
+        const { progress, buffer, playingState, currentItem, dispatchSetProgress, dispatchTogglePlayingState, dispatchSkipCurrentItem, dispatchTogglePlayerOpenState, isOpen } = this.props; 
         return (
             <MiniPlayer 
                 progress={progress} 
@@ -12,7 +12,6 @@ class MiniPlayerContainer extends Component {
                 playingState={playingState}
                 currentItem={currentItem}
                 onProgressChange={dispatchSetProgress} 
-                onBufferChange={dispatchSetBuffer} 
                 onPlayingStateChange={dispatchTogglePlayingState}
                 onSkipSong={dispatchSkipCurrentItem}
                 onToggleExpand={dispatchTogglePlayerOpenState}
@@ -32,7 +31,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchSetProgress: (progress) => dispatch(setProgress(progress)),
-    dispatchSetBuffer: (buffer) => dispatch(setBuffer(buffer)),
     dispatchTogglePlayingState: (playingState) => dispatch(togglePlayingState(playingState)),
     dispatchSkipCurrentItem: () => dispatch(skipCurrentItem()),
     dispatchTogglePlayerOpenState: () => dispatch(togglePlayerOpenState())

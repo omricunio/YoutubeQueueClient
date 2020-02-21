@@ -10,5 +10,16 @@ export default theme => ({
     },
     playerOpen: {
         display: "block"
+    },
+    itemPreview: {
+        paddingLeft: "35vw",
+        paddingRight: "35vw"
+    },
+    content: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center"
     }
 });
