@@ -5,7 +5,7 @@ export default theme => ({
     slider: {
         position: "absolute",
         top: "-11px",
-        zIndex: 3,
+        zIndex: 5,
         track: {
             color:"transparent"
         },

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Slider, LinearProgress, Button } from '@material-ui/core';
+import { Slider, LinearProgress } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import { PropTypes } from 'prop-types';
