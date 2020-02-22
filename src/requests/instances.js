@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { YOUTUBE_API_URL, YOUTUBE_AUTH } from './constants';
+import { YOUTUBE_API_URL, getRandomAPIKey } from './constants';
 
 const youtubeInstance = axios.create({
     baseURL: YOUTUBE_API_URL,
@@ -7,7 +7,7 @@ const youtubeInstance = axios.create({
 
 youtubeInstance.interceptors.request.use(config => {
     config.params = {
-        key: YOUTUBE_AUTH,
+        key: getRandomAPIKey(),
         ...config.params
     };
     return config;
