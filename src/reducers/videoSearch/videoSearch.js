@@ -20,6 +20,7 @@ const videoSearch = (state = INITIAL_STATE, action) => {
         case CLEAR_SEARCH_VALUE: 
             return { ...state, searchValue: "" } 
         case CHANGE_SEARCH_RESULTS:
+            action.payload[0].isSelected = true;
             return { ...state, searchResults: action.payload, isLoading: false }
         case CHANGE_SELECTED_SEARCHED_ITEM:
             let searchResults = Object.create(state.searchResults);
