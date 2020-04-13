@@ -1,19 +1,30 @@
 import React from "react";
-import {InputBase} from "@material-ui/core";
+import {InputBase, Button} from "@material-ui/core";
 import styles from "./styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {Search} from "@material-ui/icons";
+import {Search, Send} from "@material-ui/icons";
 
 class VideoSearchField extends React.Component {
     render() {
-        const { searchValue, onSearchValueChanged, classes } = this.props;
+        const { searchValue, onSearchValueChanged, onSearch, classes } = this.props;
         return (
             <div>
-                <div className={classes.container}>
+                <form onSubmit={(e)=>{ 
+                    e.preventDefault();
+                    onSearch(); 
+                }} className={classes.container}>
                     <Search className={classes.searchIcon}/>
                     <InputBase autoFocus className={classes.inputBase} value={searchValue} onChange={onSearchValueChanged} placeholder={"Search.."}>
                     </InputBase>
-                </div>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    endIcon={<Search/>}
+                    type="submit"
+                    >
+                        Search
+                    </Button>
+                </form>
             </div>
         );
     }
