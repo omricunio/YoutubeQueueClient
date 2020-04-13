@@ -1,7 +1,7 @@
 export default theme => ({
     root: {
         position: "static",
-        zIndex: 1,
+        zIndex: 3,
         top: 0
     },
     addButton: {

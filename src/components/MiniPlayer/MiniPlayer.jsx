@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import styles from './styles';
 import { AppBar, Typography, IconButton, Toolbar } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { PlayArrow, Pause, SkipNext } from '@material-ui/icons';
+import { PlayArrow, Pause, SkipNext, ExpandLess, ExpandMore } from '@material-ui/icons';
 import StyledImage from '../StyledImage/StyledImage';
-import ReactPlayer from 'react-player';
 import ProgressBar from '../ProgressBar/ProgressBar';
 
 class MiniPlayer extends Component {
@@ -14,12 +13,22 @@ class MiniPlayer extends Component {
     }
 
     ref = player => {
-        this.player = player
+        this.player = player;
     }
 
     render() {
-        const { classes, progress, buffer, currentItem, playingState, onProgressChange, onBufferChange, onPlayingStateChange, onSkipSong } = this.props;
-        this.player && Math.abs((this.player.getCurrentTime()/this.player.getDuration()) - (progress/100)) > 0.001 && this.player.seekTo(progress/100);
+        const { 
+                classes, 
+                progress, 
+                buffer, 
+                currentItem, 
+                playingState, 
+                onProgressChange, 
+                onPlayingStateChange, 
+                onSkipSong,
+                onToggleExpand,
+                isOpen             
+            } = this.props;
         return (
             <AppBar className={classes.bottomBar} color="secondary">
                 <ProgressBar progress={progress} buffer={buffer} onProgressChange={(progress)=>{
@@ -35,25 +44,17 @@ class MiniPlayer extends Component {
                     <IconButton className={classes.skipButton} onClick={()=>{onSkipSong()}}>
                         { <SkipNext/> }
                     </IconButton>
-                    <div style={{display: "block"}}>
-                        <Typography className={classes.main}>
+                    <div className={classes.main}>
+                        <Typography>
                             {currentItem ? currentItem.title : "Not Playing"}
                         </Typography>
-                        <Typography color={"textSecondary"} className={classes.main}>
+                        <Typography color={"textSecondary"}>
                             {currentItem ? currentItem.author : "" }
                         </Typography>
                     </div>
-                    <ReactPlayer playing={playingState ? true : false } hidden 
-                        ref={this.ref} 
-                        onProgress={(p)=>{ 
-                            onProgressChange(p.played*100);
-                            onBufferChange(p.loaded*100); 
-                        }}
-                        onEnded={()=>{
-                            onSkipSong();
-                        }} 
-                        url={currentItem ? currentItem.url : ""}
-                    />
+                    <IconButton onClick={onToggleExpand}>
+                        { isOpen ? <ExpandMore/> : <ExpandLess/> }
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         )

@@ -2,7 +2,8 @@ export default theme => ({
     bottomBar: {
         top: "auto",
         bottom: 0,
-        position: "static"
+        position: "static",
+        zIndex: 1
     },
     playButton: {
         marginLeft: theme.spacing(2)
