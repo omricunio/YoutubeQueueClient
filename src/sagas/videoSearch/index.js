@@ -1,15 +1,15 @@
 import { takeLatest, call, put, select, takeEvery } from 'redux-saga/effects';
-import { SEARCH_VALUE_CHANGED } from '../../reducers/videoSearch/actionTypes';
 import YoutubeSearch from '../../requests/YoutubeSearch/YoutubeSearch';
 import { changeSearchResults, changeSelectedSearchedItem, changePlayedItemFromSearch, closeVideoSearch } from '../../reducers/videoSearch/actions';
-import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH } from './actionTypes';
+import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH, SEARCH_FIRED } from './actionTypes';
 import { setCurrentItem, togglePlayingState, addItem } from '../../reducers/player/actions';
 const youtubeSearch = new YoutubeSearch();
 
-function* searchMatches(action) {
+function* searchMatches() {
+    const searchValue = yield select((state) => state.videoSearch.searchValue);
     let items=[];
     try {
-        items = yield call(youtubeSearch.searchByQuery, action.payload);
+        items = yield call(youtubeSearch.searchByQuery, searchValue);
     }
     catch(e) {
         console.log('Error searching youtube', e);
@@ -59,7 +59,7 @@ function* pausePlayedItemInSearch() {
 }
 
 export default function*() {
-    yield takeLatest(SEARCH_VALUE_CHANGED, searchMatches);
+    yield takeLatest(SEARCH_FIRED, searchMatches);
     yield takeEvery(SHIFT_SELECTED_SEARCHED_ITEM, shiftSelectedSearchedItem);
     yield takeEvery(SET_CURRENT_PLAYING_ITEM_BY_ID, setCurrentPlayingItemById);
     yield takeEvery(PAUSE_PLAYED_ITEM_IN_SEARCH, pausePlayedItemInSearch);
