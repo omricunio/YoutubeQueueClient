@@ -2,7 +2,8 @@ export default theme => ({
     player: {
         backgroundColor: theme.palette.secondary.main,
         width: "100vw",
-        height: "100%"
+        height: "100%",
+        position: "relative"
     },
     playerClosed: {
         display: "none"
