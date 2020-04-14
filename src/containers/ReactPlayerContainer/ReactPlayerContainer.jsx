@@ -14,6 +14,7 @@ class ReactPlayerContainer extends Component {
         return (
             <div class="react-player">
                 <ReactPlayer playing={playingState ? true : false }
+                controls={false}
                 width="100%"
                 height="100%"
                 ref={this.ref} 

@@ -7,6 +7,9 @@ export default function styles(theme) {
         },
         video: {
             height: "100%"
+        },
+        hidden: {
+            display: "none"
         }
     }
 }

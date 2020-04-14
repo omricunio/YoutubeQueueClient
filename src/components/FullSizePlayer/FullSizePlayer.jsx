@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
-import ItemPreview from "../ItemPreview/ItemPreview";
-import Glass from "../Glass/Glass";
-import BackgroundImage from "../BackgroundImage/BackgroundImage";
-import { Container } from "@material-ui/core";
 import PlayerDisplaySwitcher from "../PlayerDisplaySwitcher/PlayerDisplaySwitcher";
 import ReactVideoPlayer from "../ReactVideoPlayer/ReactVideoPlayer";
+import PlayerInfo from "../PlayerInfo/PlayerInfo";
 
 class FullSizePlayer extends Component {
   constructor(props) {
@@ -23,22 +20,6 @@ class FullSizePlayer extends Component {
   render() {
     const { classes, currentItem } = this.props;
     const { selectedMode } = this.state;
-
-    const PlayerInfo = () => (
-      <BackgroundImage src={currentItem.thumbnails.high.url}>
-        <Glass>
-          <div className={classes.content}>
-            <Container maxWidth="xs">
-              <ItemPreview
-                title={currentItem.title}
-                author={currentItem.author}
-                imageURL={currentItem.thumbnails.high.url}
-              />
-            </Container>
-          </div>
-        </Glass>
-      </BackgroundImage>
-    );
     
     return (
       <div className={classes.player}>
@@ -49,8 +30,8 @@ class FullSizePlayer extends Component {
                 onChange={this.handleModeChange.bind(this)}
               />
             </div>
-            {selectedMode === 0 ? <><PlayerInfo /><ReactVideoPlayer hidden/></> : "" }
-            {selectedMode === 1 ? <ReactVideoPlayer/> : ""}
+            {selectedMode === 0 ? <PlayerInfo currentItem={currentItem} /> : ""}
+            <ReactVideoPlayer isHidden={selectedMode === 1 ? false : true}/>    
           </>
         ) : (
           ""
