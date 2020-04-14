@@ -3,7 +3,8 @@ export default function styles(theme) {
         container: {
             position: "relative",
             height: "100%",
-            overflow: "hidden"
+            overflow: "hidden",
+            pointerEvents: "none"
         },
         video: {
             height: "100%"
