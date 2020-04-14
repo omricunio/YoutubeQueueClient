@@ -11,7 +11,7 @@ class SpinningImage extends Component {
             <div className={classes.root}>
                 <img className={classes.disc} src={disc}/>
                 <div className={classes.image}>
-                    <StyledImage src={src} className={imageClassName} objectFit="cover"/>
+                    <StyledImage src={src} className={imageClassName} objectFit="cover" disableTransition={true}/>
                 </div>
             </div>
         )

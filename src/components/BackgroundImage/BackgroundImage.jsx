@@ -3,13 +3,13 @@ import styles from './styles';
 import { withStyles } from '@material-ui/core/styles';
 import StyledImage from '../StyledImage/StyledImage';
 
-class ReactVideoPlayer extends Component {
+class BackgroundImage extends Component {
     render() {
         const { classes, src } = this.props;
         return (
             <div className={classes.container}>
                 <div className={classes.image}>
-                    <StyledImage src={src} objectFit="cover"/>
+                    <StyledImage src={src} objectFit="cover" disableTransition={true}/>
                 </div>
                 {this.props.children}
             </div>
@@ -17,4 +17,4 @@ class ReactVideoPlayer extends Component {
     }
 }
 
-export default withStyles(styles)(ReactVideoPlayer)
+export default withStyles(styles)(BackgroundImage)
