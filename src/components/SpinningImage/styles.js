@@ -2,7 +2,7 @@ export default function styles(theme) {
     return {
         root: {
             clipPath: "circle(45% at center)",
-            animation: "$spin 5s infinite linear",
+            animation: "$spin 15s infinite linear",
             position: "relative"
         },
         disc: {
