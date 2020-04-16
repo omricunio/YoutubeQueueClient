@@ -4,6 +4,7 @@ export const INITIAL_STATE = {
     progress: 0,
     buffer: 0,
     totalTime: 0,
+    volume: 100,
     items: [],
     currentItem: undefined
 };

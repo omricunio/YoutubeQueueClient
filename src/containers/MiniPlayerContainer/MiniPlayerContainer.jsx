@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import MiniPlayer from '../../components/MiniPlayer/MiniPlayer';
-import { setProgress, togglePlayingState, skipCurrentItem, togglePlayerOpenState } from '../../reducers/player/actions';
+import { setProgress, togglePlayingState, skipCurrentItem, togglePlayerOpenState, setVolume } from '../../reducers/player/actions';
 class MiniPlayerContainer extends Component {
     render() {
-        const { progress, buffer, playingState, currentItem, dispatchSetProgress, dispatchTogglePlayingState, dispatchSkipCurrentItem, dispatchTogglePlayerOpenState, isOpen } = this.props; 
+        const { progress, volume, buffer, playingState, currentItem, dispatchSetProgress, dispatchTogglePlayingState, dispatchSkipCurrentItem, dispatchTogglePlayerOpenState, dispatchSetVolume, isOpen } = this.props; 
         return (
             <MiniPlayer 
                 progress={progress} 
+                volume={volume}
                 buffer={buffer} 
                 playingState={playingState}
                 currentItem={currentItem}
@@ -15,6 +16,7 @@ class MiniPlayerContainer extends Component {
                 onPlayingStateChange={dispatchTogglePlayingState}
                 onSkipSong={dispatchSkipCurrentItem}
                 onToggleExpand={dispatchTogglePlayerOpenState}
+                onVolumeChange={dispatchSetVolume}
                 isOpen={isOpen}
             />
         )
@@ -23,6 +25,7 @@ class MiniPlayerContainer extends Component {
 
 const mapStateToProps = (state) => ({
     progress: state.player.progress,
+    volume: state.player.volume,
     buffer: state.player.buffer,
     playingState: state.player.playingState,
     currentItem: state.player.currentItem,
@@ -31,6 +34,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     dispatchSetProgress: (progress) => dispatch(setProgress(progress)),
+    dispatchSetVolume: (volume) => dispatch(setVolume(volume)),
     dispatchTogglePlayingState: (playingState) => dispatch(togglePlayingState(playingState)),
     dispatchSkipCurrentItem: () => dispatch(skipCurrentItem()),
     dispatchTogglePlayerOpenState: () => dispatch(togglePlayerOpenState())
