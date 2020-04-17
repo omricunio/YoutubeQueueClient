@@ -3,14 +3,13 @@ export default function styles(theme) {
         container: {
             position: "relative",
             height: "100%",
-            overflow: "hidden",
-            pointerEvents: "none"
+            overflow: "hidden"
         },
-        video: {
-            height: "100%"
+        image: {
+            transform: "scale(2)"
         },
-        hidden: {
-            display: "none"
+        children: {
+            position: "absolute"
         }
     }
 }

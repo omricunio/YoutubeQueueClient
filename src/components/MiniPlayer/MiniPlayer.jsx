@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from './styles';
-import { AppBar, Typography, IconButton, Toolbar } from '@material-ui/core';
+import { AppBar, Typography, IconButton, Toolbar, Slider } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { PlayArrow, Pause, SkipNext, ExpandLess, ExpandMore } from '@material-ui/icons';
 import StyledImage from '../StyledImage/StyledImage';
@@ -20,10 +20,12 @@ class MiniPlayer extends Component {
         const { 
                 classes, 
                 progress, 
+                volume,
                 buffer, 
                 currentItem, 
                 playingState, 
                 onProgressChange, 
+                onVolumeChange,
                 onPlayingStateChange, 
                 onSkipSong,
                 onToggleExpand,
@@ -44,6 +46,7 @@ class MiniPlayer extends Component {
                     <IconButton className={classes.skipButton} onClick={()=>{onSkipSong()}}>
                         { <SkipNext/> }
                     </IconButton>
+                    <Slider className={classes.volume} value={volume} onChange={(e, value)=>onVolumeChange(value)}/>
                     <div className={classes.main}>
                         <Typography>
                             {currentItem ? currentItem.title : "Not Playing"}

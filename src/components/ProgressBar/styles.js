@@ -3,6 +3,7 @@ export default theme => ({
         position: "relative"
     },
     slider: {
+        overflow: "hidden",
         position: "absolute",
         top: "-11px",
         zIndex: 5,

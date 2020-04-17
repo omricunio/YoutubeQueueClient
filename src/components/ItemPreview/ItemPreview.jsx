@@ -9,7 +9,7 @@ class ItemPreview extends Component {
         const { classes, title, author, imageURL } = this.props;
         return (
             <div>
-                <SpinningImage src={imageURL}/>
+                <SpinningImage imageClassName={classes.spinningImage} src={imageURL}/>
                 <div className={classes.text}>
                     <Typography>
                         <Box fontWeight="fontWeightBold">

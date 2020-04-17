@@ -5,9 +5,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 class ReactVideoPlayer extends Component {
     render() {
-        const { classes } = this.props;
+        const { classes, isHidden } = this.props;
         return (
-            <div className={classes.container}>
+            <div className={classes.container + (isHidden ? " " + classes.hidden : "")}>
                 <div className={classes.video}>
                     <ReactPlayerContainer/>
                 </div>

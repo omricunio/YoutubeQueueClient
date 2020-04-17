@@ -18,5 +18,10 @@ export default theme => ({
     imageContainer: {
         marginLeft: theme.spacing(2),
         width: "5em"
+    },
+    volume: {
+        width: theme.spacing(10),
+        marginLeft: "15px",
+        marginRight: "15px"
     }
 });

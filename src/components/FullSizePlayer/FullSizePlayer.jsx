@@ -1,27 +1,44 @@
-import React, { Component } from 'react'
-import styles from './styles';
-import { withStyles } from '@material-ui/core/styles';
-import ItemPreview from '../ItemPreview/ItemPreview';
-import ReactVideoPlayer from '../ReactVideoPlayer/ReactVideoPlayer';
-import Glass from '../Glass/Glass';
+import React, { Component } from "react";
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import PlayerDisplaySwitcher from "../PlayerDisplaySwitcher/PlayerDisplaySwitcher";
+import ReactVideoPlayer from "../ReactVideoPlayer/ReactVideoPlayer";
+import PlayerInfo from "../PlayerInfo/PlayerInfo";
 
 class FullSizePlayer extends Component {
-    render() {
-        const { classes, currentItem } = this.props;
-        return (
-            <div className={classes.player}>
-                <ReactVideoPlayer>
-                    <Glass>
-                        <div className={classes.content}>
-                            <div className={classes.itemPreview}>      
-                            { currentItem ? <ItemPreview title={currentItem.title} author={currentItem.author} imageURL={currentItem.thumbnails.high.url}/> : "" }
-                            </div>
-                        </div>                        
-                    </Glass>
-                </ReactVideoPlayer>
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedMode: 0,
+    };
+  }
+
+  handleModeChange(mode) {
+    this.setState({ selectedMode: mode });
+  }
+
+  render() {
+    const { classes, currentItem } = this.props;
+    const { selectedMode } = this.state;
+    
+    return (
+      <div className={classes.player}>
+        {currentItem ? (
+          <>
+            <div className={classes.displaySwitcher}>
+              <PlayerDisplaySwitcher
+                onChange={this.handleModeChange.bind(this)}
+              />
             </div>
-        )
-    }
+            {selectedMode === 0 ? <PlayerInfo currentItem={currentItem} /> : ""}
+            <ReactVideoPlayer isHidden={selectedMode === 1 ? false : true}/>    
+          </>
+        ) : (
+          ""
+        )}
+      </div>
+    );
+  }
 }
 
-export default withStyles(styles)(FullSizePlayer)
+export default withStyles(styles)(FullSizePlayer);

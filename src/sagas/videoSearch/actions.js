@@ -1,4 +1,4 @@
-import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH } from './actionTypes';
+import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH, SEARCH_FIRED } from './actionTypes';
 
 export function shiftSelectedSearchedItem(payload) {
     return {
@@ -32,5 +32,11 @@ export function addItemAndCloseSearch(index) {
     return {
         index,
         type: ADD_ITEM_AND_CLOSE_SEARCH
+    }
+}
+
+export function searchFired() {
+    return {
+        type: SEARCH_FIRED
     }
 }

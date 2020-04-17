@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE, SET_VOLUME} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -7,6 +7,8 @@ const player = (state = INITIAL_STATE, action) => {
             return {...state, progress: action.payload}
         case SET_BUFFER:
             return {...state, buffer: action.payload}
+        case SET_VOLUME:
+            return {...state, volume: action.volume}
         case TOGGLE_PLAYING_STATE:
             if(action.payload !== undefined) {
                 return {...state, playingState: action.payload}
