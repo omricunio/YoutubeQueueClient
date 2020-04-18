@@ -1,4 +1,4 @@
-import {TOGGLE_DARK_MODE} from "./actionTypes";
+import {TOGGLE_DARK_MODE, SET_QUEUE_GUID} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const appSettings = (state = INITIAL_STATE, action) => {
@@ -12,6 +12,8 @@ const appSettings = (state = INITIAL_STATE, action) => {
                 return {...state, theme: 'dark'};
             }
             return state;
+        case SET_QUEUE_GUID:
+            return {...state, queueGuid: action.guid}
         default:
             return state;
     }

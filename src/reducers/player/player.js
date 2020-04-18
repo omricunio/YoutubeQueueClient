@@ -1,4 +1,4 @@
-import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE, SET_VOLUME} from "./actionTypes";
+import {SET_PROGRESS, SET_BUFFER, TOGGLE_PLAYING_STATE, SET_CURRENT_ITEM, ADD_NEW_ITEM, SKIP_CURRENT_ITEM, DELETE_ITEM_BY_INDEX, TOGGLE_PLAYER_OPEN_STATE, SET_VOLUME, SET_ITEMS} from "./actionTypes";
 import {INITIAL_STATE} from "./initialState";
 
 const player = (state = INITIAL_STATE, action) => {
@@ -18,6 +18,10 @@ const player = (state = INITIAL_STATE, action) => {
             }
         case SET_CURRENT_ITEM:
             return {...state, currentItem: action.payload}
+        case SET_ITEMS:
+            const queueItems = action.items;
+            const firstItem = queueItems.shift();
+            return {...state, currentItem: firstItem, items: queueItems, progress: 0, buffer: 0}
         case ADD_NEW_ITEM:
             let items = Object.create(state.items);
             if(action.position) {
