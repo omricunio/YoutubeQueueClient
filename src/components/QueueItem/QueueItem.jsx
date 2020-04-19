@@ -15,9 +15,11 @@ class QueueItem extends Component {
                     </Avatar>
                     }
                     action={
-                    <IconButton onClick={()=>onDelete(index)}>
-                        <DeleteOutlined/>
-                    </IconButton>
+                        onDelete ? (
+                            <IconButton onClick={()=>onDelete(index)}>
+                            <DeleteOutlined/>
+                            </IconButton>
+                        ) : ""
                     }
                     title={name}
                     subheader={author}

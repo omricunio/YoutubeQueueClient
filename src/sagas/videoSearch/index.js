@@ -1,8 +1,9 @@
 import { takeLatest, call, put, select, takeEvery } from 'redux-saga/effects';
 import { searchByQuery } from '../../requests/youtubeSearch';
 import { changeSearchResults, changeSelectedSearchedItem, changePlayedItemFromSearch, closeVideoSearch } from '../../reducers/videoSearch/actions';
-import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH, SEARCH_FIRED } from './actionTypes';
-import { setCurrentItem, togglePlayingState, addItem } from '../../reducers/player/actions';
+import { SHIFT_SELECTED_SEARCHED_ITEM, SET_CURRENT_PLAYING_ITEM_BY_ID, PAUSE_PLAYED_ITEM_IN_SEARCH, ADD_ITEM_BY_SEARCH_INDEX, ADD_ITEM_AND_CLOSE_SEARCH, SEARCH_FIRED } from './actionTypes';
+import { setCurrentItem, togglePlayingState } from '../../reducers/player/actions';
+import { addItemToQueue } from '../queue/actions';
 
 function* searchMatches() {
     const searchValue = yield select((state) => state.videoSearch.searchValue);
@@ -41,14 +42,16 @@ function* setCurrentPlayingItemById(action) {
     yield put(togglePlayingState(true));
 }
 
-function* addItemToQueueBySearchIndex(action) {
+function* addItemBySearchIndex(action) {
     const items = yield select((state) => state.videoSearch.searchResults);
     const itemToAdd = items[action.index];
-    yield put(addItem(itemToAdd));
+    delete itemToAdd.isSelected;
+    delete itemToAdd.isPlayed;
+    yield put(addItemToQueue(itemToAdd));
 }
 
 function* addItemAndCloseSearch(action) {
-    yield addItemToQueueBySearchIndex(action);
+    yield addItemBySearchIndex(action);
     yield put(closeVideoSearch());
 }
 
@@ -62,6 +65,6 @@ export default function*() {
     yield takeEvery(SHIFT_SELECTED_SEARCHED_ITEM, shiftSelectedSearchedItem);
     yield takeEvery(SET_CURRENT_PLAYING_ITEM_BY_ID, setCurrentPlayingItemById);
     yield takeEvery(PAUSE_PLAYED_ITEM_IN_SEARCH, pausePlayedItemInSearch);
-    yield takeEvery(ADD_ITEM_TO_QUEUE_BY_SEARCH_INDEX, addItemToQueueBySearchIndex);
+    yield takeEvery(ADD_ITEM_BY_SEARCH_INDEX, addItemBySearchIndex);
     yield takeEvery(ADD_ITEM_AND_CLOSE_SEARCH, addItemAndCloseSearch);
 }

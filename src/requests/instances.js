@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { YOUTUBE_API_URL, getRandomAPIKey, SERVER_URL } from './constants';
+import { getRandomAPIKey } from './constants';
+import { YOUTUBE_API_URL, SERVER_URL } from '../config/hosts';
 
 const youtubeInstance = axios.create({
     baseURL: YOUTUBE_API_URL,

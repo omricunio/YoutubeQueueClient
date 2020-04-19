@@ -1,11 +1,14 @@
 import HomePage from "./HomePage";
 import { connect } from "react-redux";
-import { fetchQueue } from "../../sagas/player/actions";
-import { createQueue } from "../../sagas/appSettings/actions";
+import { fetchAndSetQueue, createQueue } from "../../sagas/queue/actions";
+
+const mapStateToProps = (state) => ({
+    queueGuid: state.appSettings.queueGuid
+})
 
 const mapDispatchToProps = (dispatch) => ({
-    dispatchFetchQueue: (guid) => dispatch(fetchQueue(guid)),
+    dispatchFetchAndSetQueue: (guid) => dispatch(fetchAndSetQueue(guid)),
     dispatchCreateQueue: () => dispatch(createQueue())
 });
 
-export default connect(null, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

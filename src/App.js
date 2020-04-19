@@ -9,6 +9,7 @@ import { keyPressed } from './sagas/keyHandler/actions/actions';
 import MainContainer from './containers/MainContainer/MainContainer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
+import { setQueueGuid } from './reducers/appSettings/actions';
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
@@ -31,7 +32,7 @@ function App(props) {
 
 const mapStateToProps = (state) => {
     return {
-        theme: state.appSettings.theme
+        theme: state.appSettings.theme,
     }
 };
 
