@@ -6,5 +6,6 @@ export const INITIAL_STATE = {
     totalTime: 0,
     volume: 100,
     items: [],
+    playedItems: [],
     currentItem: undefined
 };

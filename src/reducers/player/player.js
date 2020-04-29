@@ -39,9 +39,11 @@ const player = (state = INITIAL_STATE, action) => {
             return {...state, items}
         case SKIP_CURRENT_ITEM: {
             let items = Object.create(state.items);
+            let playedItems = Object.create(state.playedItems);
             if(items.length > 0){
                 const newCurrentItem = items.shift();
-                return {...state, currentItem: newCurrentItem, items, progress: 0, buffer: 0}
+                playedItems.push(newCurrentItem);
+                return {...state, currentItem: newCurrentItem, items, playedItems, progress: 0, buffer: 0}
             }
             return {...state}
         }

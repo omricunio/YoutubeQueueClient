@@ -1,21 +1,24 @@
 import React from 'react';
-import TopBarContainer from "./containers/TopBarContainer/TopBarContainer";
+import HomePage from './components/HomePage';
+
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import * as Themes from './data/theme';
 import { CssBaseline } from "@material-ui/core";
 import {connect} from "react-redux";
-import VideoSearchContainer from './containers/VideoSearchContainer/VideoSearchContainer';
 import { keyPressed } from './sagas/keyHandler/actions/actions';
-import MainContainer from './containers/MainContainer/MainContainer';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import { setQueueGuid } from './reducers/appSettings/actions';
+
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+
+toast.configure();
 
 function App(props) {
     const { theme, dispatchKeyPressed } = props;
     const getMaterialTheme = () => {
         return Themes[theme];
     };
+
     document.addEventListener('keydown', dispatchKeyPressed);  
 
     return (

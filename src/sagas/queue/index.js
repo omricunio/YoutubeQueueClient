@@ -3,6 +3,8 @@ import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { addItemToQueueRequest, getQueueRequest, createQueueRequest } from '../../requests/serverRequests';
 import { addItem, setItems } from '../../reducers/player/actions';
 import { setQueueGuid } from '../../reducers/appSettings/actions';
+import { ERROR_TOAST } from '../toasters/toasters';
+import { showToast } from '../toasters/actions';
 
 function* addItemToQueue({item}) {
     const queueGuid = yield select((state) => state.appSettings.queueGuid);
@@ -26,6 +28,7 @@ function* createQueue() {
         yield put(setQueueGuid(response.guid))
     }
     catch(e) {
+        yield put(showToast(ERROR_TOAST, 'Shared Queue Creation Failed'));
         console.error('Error in creating queue', e);
     }
 }
@@ -38,7 +41,7 @@ function* fetchQueue({guid}) {
         yield put(setQueueGuid(guid));
     }
     catch(e) {
-        console.error('Error in fetching queue', e);
+        yield put(showToast(ERROR_TOAST, 'Failed to fetch queue'));
     }
 }
 
