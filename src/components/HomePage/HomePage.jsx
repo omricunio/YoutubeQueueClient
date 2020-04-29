@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import TopBarContainer from "../../containers/TopBarContainer/TopBarContainer";
 import VideoSearchContainer from "../../containers/VideoSearchContainer/VideoSearchContainer";

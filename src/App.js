@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import { keyPressed } from './sagas/keyHandler/actions/actions';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import './assets/css/animated.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 

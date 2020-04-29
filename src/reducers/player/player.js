@@ -42,7 +42,9 @@ const player = (state = INITIAL_STATE, action) => {
             let playedItems = Object.create(state.playedItems);
             if(items.length > 0){
                 const newCurrentItem = items.shift();
-                playedItems.push(newCurrentItem);
+                if(state.currentItem) {
+                    playedItems.push(state.currentItem);
+                }
                 return {...state, currentItem: newCurrentItem, items, playedItems, progress: 0, buffer: 0}
             }
             return {...state}

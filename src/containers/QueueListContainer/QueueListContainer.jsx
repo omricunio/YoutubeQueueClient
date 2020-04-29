@@ -5,9 +5,9 @@ import { deleteItemByIndex } from '../../reducers/player/actions';
 
 class QueueListContainer extends Component {
     render() {
-        const { items, playedItems, dispatchDeleteItemByIndex } = this.props;
+        const { items, playedItems, currentItem, dispatchDeleteItemByIndex } = this.props;
         return (
-            <QueueList items={items} playedItems={playedItems} dispatchDeleteItemByIndex={dispatchDeleteItemByIndex}/>
+            <QueueList items={items} playedItems={playedItems} currentItem={currentItem} dispatchDeleteItemByIndex={dispatchDeleteItemByIndex}/>
         )
     }
 }
@@ -15,7 +15,8 @@ class QueueListContainer extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.player.items,
-        playedItems: state.player.playedItems
+        playedItems: state.player.playedItems,
+        currentItem: state.player.currentItem
     }
 };
 

@@ -3,20 +3,24 @@ export default theme => ({
         padding: "5vh 30vw",
         overflow: "auto"
     },
-    "@keyframes in": {
+    "@keyframes played": {
         from: {
-            opacity: 0
+            opacity: 1
         },
         to: {
-            opacity: 1
+            opacity: 0.4
         }
     },
     item: {
         marginBottom: "5vh",
-        animation: "$in 2s",
+        // transition: "opacity 2s"
     },
-    firstItem: {
+    currentItem: {
         border: "1px #4e4e4e solid",
         boxShadow: "0 0 20px 3px #4e4e4e"
+    },
+    playedItem: {
+        opacity: 0.4,
+        animation: "$played 1s",
     }
 });

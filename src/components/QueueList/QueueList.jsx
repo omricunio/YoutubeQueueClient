@@ -3,17 +3,16 @@ import QueueItem from '../QueueItem/QueueItem'
 import { withStyles } from '@material-ui/core/styles';
 import classNames from "classnames";
 import styles from './styles';
-
+import { Animated } from "react-animated-css";
 class QueueList extends Component {
     render() {
-        const { classes, playedItems, items, dispatchDeleteItemByIndex } = this.props;
-        const currentItem = playedItems.shift();
+        const { classes, playedItems, currentItem, items, dispatchDeleteItemByIndex } = this.props;
         return (
             <div>
                 <div className={classes.root}>
                     {                           
                         playedItems.map((item, index) => 
-                            <div className={classes.item}>
+                            <div className={classNames(classes.item, classes.playedItem)}>
                                 <QueueItem 
                                         name={item.title} 
                                         author={item.author} 
@@ -25,7 +24,8 @@ class QueueList extends Component {
                     }
                     {
                         currentItem ? (
-                            <div className={classNames(classes.item, classes.firstItem)}>
+                            <Animated>
+                            <div className={classNames(classes.item, classes.currentItem)}>
                                 <QueueItem 
                                         name={currentItem.title} 
                                         author={currentItem.author} 
@@ -33,18 +33,21 @@ class QueueList extends Component {
                                         index={-1}
                                 />
                             </div>
+                            </Animated>
                         ) : ""
                     }
                     { 
                         items.map((item, index) =>
-                        <div className={classes.item}> 
-                        <QueueItem 
-                            name={item.title} 
-                            author={item.author} 
-                            image={item.thumbnails.high.url}
-                            index={index}
-                            onDelete={dispatchDeleteItemByIndex}
-                        />
+                        <div className={classes.item} style={{position: 'relative'}}> 
+                            <Animated>
+                            <QueueItem 
+                                name={item.title} 
+                                author={item.author} 
+                                image={item.thumbnails.high.url}
+                                index={index}
+                                onDelete={dispatchDeleteItemByIndex}
+                            />
+                            </Animated>
                         </div>
                         ) 
                     }

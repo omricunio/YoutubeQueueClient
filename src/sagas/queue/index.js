@@ -28,7 +28,7 @@ function* createQueue() {
         yield put(setQueueGuid(response.guid))
     }
     catch(e) {
-        yield put(showToast(ERROR_TOAST, 'Shared Queue Creation Failed'));
+        yield put(showToast(ERROR_TOAST, 'Shared queue creation failed'));
         console.error('Error in creating queue', e);
     }
 }
