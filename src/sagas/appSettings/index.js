@@ -8,7 +8,6 @@ import { listenToQueueEvents } from '../../utils/socketListener';
 
 function* createUser() {
     try {
-        debugger;
         const queueGuid = yield select((state) => state.appSettings.queueGuid);
         const userToken = yield call(listenToQueueEvents, queueGuid);
         serverInstance.defaults.headers.common["Authorization"] = userToken;

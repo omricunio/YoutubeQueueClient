@@ -5,7 +5,7 @@ export default theme => ({
     slider: {
         overflow: "hidden",
         position: "absolute",
-        top: "-11px",
+        transform: "translateY(-45%)",
         zIndex: 5,
         track: {
             color:"transparent"
