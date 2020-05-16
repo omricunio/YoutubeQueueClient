@@ -1,6 +1,6 @@
 export default theme => ({
     root: {
-        padding: "5vh 30vw",
+        padding: "5vh 0",
         overflow: "auto"
     },
     "@keyframes played": {
@@ -13,11 +13,11 @@ export default theme => ({
     },
     item: {
         marginBottom: "5vh",
-        // transition: "opacity 2s"
+        boxShadow: "0 0 0px 0px #4e4e4e",
+        transition: "box-shadow 2s ease-in-out"
     },
     currentItem: {
-        border: "1px #4e4e4e solid",
-        boxShadow: "0 0 20px 3px #4e4e4e"
+        boxShadow: "0 0 20px 3px #4e4e4e",
     },
     playedItem: {
         opacity: 0.4,

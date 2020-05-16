@@ -4,12 +4,14 @@ import { withStyles } from '@material-ui/core/styles';
 import classNames from "classnames";
 import styles from './styles';
 import { Animated } from "react-animated-css";
+import { Container } from '@material-ui/core';
 class QueueList extends Component {
     render() {
         const { classes, playedItems, currentItem, items, dispatchDeleteItemByIndex } = this.props;
         return (
             <div>
                 <div className={classes.root}>
+                <Container maxWidth="sm" m={2}>
                     {                           
                         playedItems.map((item, index) => 
                             <div className={classNames(classes.item, classes.playedItem)}>
@@ -51,6 +53,7 @@ class QueueList extends Component {
                         </div>
                         ) 
                     }
+                </Container>
                 </div>
             </div>
         )

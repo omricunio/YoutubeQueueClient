@@ -1,6 +1,7 @@
 import HomePage from "./HomePage";
 import { connect } from "react-redux";
 import { fetchAndSetQueue, createQueue } from "../../sagas/queue/actions";
+import { createUser } from "../../sagas/appSettings/actions";
 
 const mapStateToProps = (state) => ({
     queueGuid: state.appSettings.queueGuid

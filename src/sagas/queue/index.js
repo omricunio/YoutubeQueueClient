@@ -5,6 +5,7 @@ import { addItem, setItems } from '../../reducers/player/actions';
 import { setQueueGuid } from '../../reducers/appSettings/actions';
 import { ERROR_TOAST } from '../toasters/toasters';
 import { showToast } from '../toasters/actions';
+import { createUser } from '../appSettings/actions';
 
 function* addItemToQueue({item}) {
     const queueGuid = yield select((state) => state.appSettings.queueGuid);
@@ -25,7 +26,7 @@ function* addItemToQueue({item}) {
 function* createQueue() {
     try {
         const response = yield call(createQueueRequest);
-        yield put(setQueueGuid(response.guid))
+        yield setQueue(response.guid);
     }
     catch(e) {
         yield put(showToast(ERROR_TOAST, 'Shared queue creation failed'));
@@ -37,12 +38,18 @@ function* fetchQueue({guid}) {
     let queue=[];
     try {
         queue = yield call(getQueueRequest, guid);
+        yield setQueue(guid);
         yield put(setItems(queue.items));
-        yield put(setQueueGuid(guid));
     }
     catch(e) {
         yield put(showToast(ERROR_TOAST, 'Failed to fetch queue'));
+        console.error('Failed to fetch queue', e);
     }
+}
+
+function* setQueue(guid) {
+    yield put(setQueueGuid(guid));
+    yield put(createUser());
 }
 
 export default function*() {
