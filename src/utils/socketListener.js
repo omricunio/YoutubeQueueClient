@@ -1,7 +1,7 @@
 import socketIOClient from "socket.io-client";
 import { SERVER_URL } from "../config/hosts";
 import { store } from "../index";
-import { addItem } from "../reducers/player/actions";
+import { addItem, deleteItemByIndex } from "../reducers/player/actions";
 
 export async function listenToQueueEvents(queueGuid) {
   console.log(`Start listening to queue ${queueGuid}`);
@@ -11,8 +11,8 @@ export async function listenToQueueEvents(queueGuid) {
   socket.on("added", (item) => {
     store.dispatch(addItem(item));
   });
-  socket.on("removed", (data) => {
-    console.log(data);
+  socket.on("removed", (index) => {
+    store.dispatch(deleteItemByIndex(Number(index)));
   });
   return new Promise((resolve, reject) => {
     socket.on("connected", (userToken) => {
