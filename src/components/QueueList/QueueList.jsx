@@ -19,7 +19,8 @@ class QueueList extends Component {
                                         name={item.title} 
                                         author={item.author} 
                                         image={item.thumbnails.high.url}
-                                        index={-1}
+                                        index={index}
+                                        onDelete={dispatchDeleteItemByIndex}
                                 />
                             </div>
                         )
@@ -32,7 +33,8 @@ class QueueList extends Component {
                                         name={currentItem.title} 
                                         author={currentItem.author} 
                                         image={currentItem.thumbnails.high.url}
-                                        index={-1}
+                                        index={playedItems.length}
+                                        onDelete={dispatchDeleteItemByIndex}
                                 />
                             </div>
                             </Animated>
@@ -46,7 +48,7 @@ class QueueList extends Component {
                                 name={item.title} 
                                 author={item.author} 
                                 image={item.thumbnails.high.url}
-                                index={index}
+                                index={playedItems.length+1+index}
                                 onDelete={dispatchDeleteItemByIndex}
                             />
                             </Animated>

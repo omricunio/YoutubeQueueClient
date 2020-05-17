@@ -50,9 +50,20 @@ const player = (state = INITIAL_STATE, action) => {
             return {...state}
         }
         case DELETE_ITEM_BY_INDEX: {
+            const requestedIndex = action.index;
             let items = Object.create(state.items);
-            items.splice(action.index,1);
-            return {...state, items}
+            let playedItems = Object.create(state.playedItems);
+            let currentItem = Object.create(state.currentItem);
+            if(requestedIndex < playedItems.length) {
+                playedItems.splice(requestedIndex,1);
+            }
+            else if (requestedIndex === playedItems.length) {
+                currentItem = items.shift();
+            }
+            else {
+                items.splice(requestedIndex-playedItems.length-1,1);
+            }
+            return {...state, items, currentItem, playedItems}
         }
         case TOGGLE_PLAYER_OPEN_STATE: {
             if(action.isOpen !== undefined) {
