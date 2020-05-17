@@ -13,3 +13,7 @@ export async function createQueueRequest() {
 export async function addItemToQueueRequest(item, guid) {
   await serverInstance.post(`/queues/${guid}`, item);
 }
+
+export async function deleteItemFromQueueRequest(itemIndex, queueGuid) {
+  await serverInstance.delete(`/queues/${queueGuid}/${itemIndex}`);
+}
