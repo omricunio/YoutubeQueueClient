@@ -5,6 +5,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Add, WbSunny } from "@material-ui/icons"
 import styles from "./styles";
 import { withStyles } from '@material-ui/core/styles';
+import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import PropTypes from 'prop-types'
 
 class TopBar extends React.Component {
@@ -17,6 +18,7 @@ class TopBar extends React.Component {
                         <IconButton edge="start" color="inherit" className={classes.addButton} onClick={onAddClick}>
                             <Add />
                         </IconButton>
+                        <QueueMusicIcon/>
                         <Typography variant="h6" className={classes.title}>
                             {title}
                         </Typography>

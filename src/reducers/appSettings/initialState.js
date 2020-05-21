@@ -1,4 +1,6 @@
 export const INITIAL_STATE = {
     theme: "dark",
-    title: "Youtube Queue"
+    title: "Youtube Queue",
+    queueGuid: undefined,
+    userId: ""
 };

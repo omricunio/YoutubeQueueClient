@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux'
 import storeCreator from './reducers/storeCreator';
-const store = storeCreator();
+export const store = storeCreator();
 
 function ProviderApplier() {
     return (

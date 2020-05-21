@@ -1,8 +1,8 @@
 import React from "react";
-import {InputBase, Button} from "@material-ui/core";
+import {InputBase, Fab} from "@material-ui/core";
 import styles from "./styles";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {Search, Send} from "@material-ui/icons";
+import {Search} from "@material-ui/icons";
 
 class VideoSearchField extends React.Component {
     render() {
@@ -16,14 +16,13 @@ class VideoSearchField extends React.Component {
                     <Search className={classes.searchIcon}/>
                     <InputBase autoFocus className={classes.inputBase} value={searchValue} onChange={onSearchValueChanged} placeholder={"Search.."}>
                     </InputBase>
-                    <Button
-                    variant="contained"
-                    color="primary"
-                    endIcon={<Search/>}
-                    type="submit"
+                    <Fab
+                        size="small"
+                        color="primary"
+                        type="submit"
                     >
-                        Search
-                    </Button>
+                        <Search/>
+                    </Fab>
                 </form>
             </div>
         );

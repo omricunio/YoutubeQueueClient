@@ -10,6 +10,9 @@ export default theme => {
         backdropFilter: "blur(50px)",
         width: "80vw",
         height: "80vh",
+        [theme.breakpoints.down("sm")]: {
+            width: "95vw"
+        },
         padding: theme.spacing(1,1,1,1),
         outline: "none",
         display: "flex",
