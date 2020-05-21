@@ -13,15 +13,22 @@ export default theme => ({
     },
     main: {
         marginLeft: theme.spacing(1),
-        flexGrow: 1
+        flexGrow: 1,
+        overflow: "hidden"
     },
     imageContainer: {
         marginLeft: theme.spacing(2),
-        width: "5em"
+        width: "5em",
+        [theme.breakpoints.down("sm")]: {
+            display: "none"
+        }
     },
     volume: {
         width: theme.spacing(10),
         marginLeft: "15px",
-        marginRight: "15px"
+        marginRight: "15px",
+        [theme.breakpoints.down("sm")]: {
+            display: "none"
+        }
     }
 });

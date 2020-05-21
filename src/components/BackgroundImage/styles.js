@@ -6,10 +6,9 @@ export default function styles(theme) {
             overflow: "hidden"
         },
         image: {
-            transform: "scale(2)"
-        },
-        children: {
-            position: "absolute"
+            transform: "scale(2)",
+            minHeight: "100%",
+            width: "100%"
         }
     }
 }

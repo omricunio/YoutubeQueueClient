@@ -33,8 +33,11 @@ class VideoSearchItem extends Component {
                         src={iconLink}/>                           
                 </ListItemIcon>
                 <ListItemText className={classes.listItem}
+                    primaryTypographyProps={{noWrap: true, component: "p"}}
+                    secondaryTypographyProps={{noWrap: true}}
                     primary={primaryText}
                     secondary={secondaryText}
+                    
                 />
                 <IconButton onClick={ ()=>onAddPress(index) }>
                     <Add/>

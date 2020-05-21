@@ -11,7 +11,7 @@ class ItemPreview extends Component {
             <div>
                 <SpinningImage imageClassName={classes.spinningImage} src={imageURL}/>
                 <div className={classes.text}>
-                    <Typography>
+                    <Typography color={"textPrimary"}>
                         <Box fontWeight="fontWeightBold">
                             {title}
                         </Box>

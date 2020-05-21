@@ -48,10 +48,10 @@ class MiniPlayer extends Component {
                     </IconButton>
                     <Slider className={classes.volume} value={volume} onChange={(e, value)=>onVolumeChange(value)}/>
                     <div className={classes.main}>
-                        <Typography>
+                        <Typography noWrap={true}>
                             {currentItem ? currentItem.title : "Not Playing"}
                         </Typography>
-                        <Typography color={"textSecondary"}>
+                        <Typography color={"textSecondary"} noWrap={true}>
                             {currentItem ? currentItem.author : "" }
                         </Typography>
                     </div>

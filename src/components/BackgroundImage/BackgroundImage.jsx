@@ -8,9 +8,7 @@ class BackgroundImage extends Component {
         const { classes, src } = this.props;
         return (
             <div className={classes.container}>
-                <div className={classes.image}>
-                    <StyledImage src={src} objectFit="cover" disableTransition={true}/>
-                </div>
+                <img src={src} className={classes.image} alt="No background"></img>
                 {this.props.children}
             </div>
         )
