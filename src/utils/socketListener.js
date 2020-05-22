@@ -4,10 +4,10 @@ import { store } from "../index";
 import { deleteItemByIndex } from "../reducers/player/actions";
 import { addItemMiddleware } from "../sagas/player/actions";
 
-export async function listenToQueueEvents(queueGuid) {
+export async function listenToQueueEvents(queueGuid, userId) {
   console.log(`Start listening to queue ${queueGuid}`);
   const socket = socketIOClient(SERVER_URL, {
-    query: `queueGuid=${queueGuid}`
+    query: `queueGuid=${queueGuid}&userId=${userId}`
   });
   socket.on("added", (item) => {
     store.dispatch(addItemMiddleware(item));
@@ -16,8 +16,8 @@ export async function listenToQueueEvents(queueGuid) {
     store.dispatch(deleteItemByIndex(Number(index)));
   });
   return new Promise((resolve, reject) => {
-    socket.on("connected", (userToken) => {
-      resolve(userToken)
+    socket.on("connected", () => {
+      resolve()
     })
     socket.on("connection_error", (error) => {
       reject(error);

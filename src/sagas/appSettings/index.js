@@ -5,13 +5,16 @@ import { setUserId } from '../../reducers/appSettings/actions';
 import { ERROR_TOAST } from '../toasters/toasters';
 import { serverInstance } from '../../requests/instances';
 import { listenToQueueEvents } from '../../utils/socketListener';
+import { createUserRequest } from '../../requests/serverRequests';
 
 function* createUser() {
     try {
         const queueGuid = yield select((state) => state.appSettings.queueGuid);
-        const userToken = yield call(listenToQueueEvents, queueGuid);
-        serverInstance.defaults.headers.common["Authorization"] = userToken;
-        yield put(setUserId(userToken));
+        const userId = yield call(createUserRequest);
+
+        yield call(listenToQueueEvents, queueGuid, userId);
+        serverInstance.defaults.headers.common["Authorization"] = userId;
+        yield put(setUserId(userId));
         
     }
     catch(e) {
