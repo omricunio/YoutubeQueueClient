@@ -17,3 +17,8 @@ export async function addItemToQueueRequest(item, guid) {
 export async function deleteItemFromQueueRequest(itemIndex, queueGuid) {
   await serverInstance.delete(`/queues/${queueGuid}/${itemIndex}`);
 }
+
+export async function createUserRequest() {
+  const userId = (await serverInstance.post(`/users`)).data;
+  return userId;
+}
