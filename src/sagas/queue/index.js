@@ -1,11 +1,12 @@
 import { ADD_ITEM_TO_QUEUE, CREATE_QUEUE, FETCH_QUEUE, DELETE_ITEM_FROM_QUEUE } from './actionTypes';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { addItemToQueueRequest, getQueueRequest, createQueueRequest, deleteItemFromQueueRequest } from '../../requests/serverRequests';
-import { addItem, setItems, deleteItemByIndex } from '../../reducers/player/actions';
+import { setItems, deleteItemByIndex } from '../../reducers/player/actions';
 import { setQueueGuid } from '../../reducers/appSettings/actions';
 import { ERROR_TOAST } from '../toasters/toasters';
 import { showToast } from '../toasters/actions';
 import { createUser } from '../appSettings/actions';
+import { addItemMiddleware } from '../player/actions';
 
 function* addItemToQueue({item}) {
     const queueGuid = yield select((state) => state.appSettings.queueGuid);
@@ -16,7 +17,7 @@ function* addItemToQueue({item}) {
 
     try {
         yield call(addItemToQueueRequest, item, queueGuid);
-        yield put(addItem(item));
+        yield put(addItemMiddleware(item));
     }
     catch(e) {
         console.error('Error in adding item to queue', e);
