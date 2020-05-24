@@ -1,4 +1,4 @@
-import { ADD_ITEM_TO_QUEUE, CREATE_QUEUE, FETCH_QUEUE, DELETE_ITEM_FROM_QUEUE } from './actionTypes';
+import { ADD_ITEM_TO_QUEUE, CREATE_QUEUE, FETCH_QUEUE, DELETE_ITEM_FROM_QUEUE, RELOAD_QUEUE } from './actionTypes';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 import { addItemToQueueRequest, getQueueRequest, createQueueRequest, deleteItemFromQueueRequest } from '../../requests/serverRequests';
 import { setItems, deleteItemByIndex } from '../../reducers/player/actions';
@@ -69,9 +69,16 @@ function* setQueue(guid) {
     yield put(createUser());
 }
 
+function* reloadQueue() {
+    const queueGuid = yield select((state) => state.appSettings.queueGuid);
+    const queue = yield call(getQueueRequest, queueGuid);
+    yield put(setItems(queue.items));
+}
+
 export default function*() {
     yield takeLatest(ADD_ITEM_TO_QUEUE, addItemToQueue);
     yield takeLatest(CREATE_QUEUE, createQueue);
     yield takeLatest(FETCH_QUEUE, fetchQueue);
     yield takeLatest(DELETE_ITEM_FROM_QUEUE, deleteItemFromQueue);
+    yield takeLatest(RELOAD_QUEUE, reloadQueue);
 }
