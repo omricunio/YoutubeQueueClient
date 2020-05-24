@@ -2,3 +2,4 @@ export const ADD_ITEM_TO_QUEUE = "ADD_ITEM_TO_QUEUE";
 export const DELETE_ITEM_FROM_QUEUE = "DELETE_ITEM_FROM_QUEUE";
 export const CREATE_QUEUE = "CREATE_QUEUE";
 export const FETCH_QUEUE = "FETCH_QUEUE";
+export const RELOAD_QUEUE = "RELOAD_QUEUE";

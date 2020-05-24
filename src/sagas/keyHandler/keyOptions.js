@@ -1,8 +1,9 @@
 import { handleLetterPress } from "./handlers/letterHandler";
 import { handleEscapePress } from "./handlers/escapeHandler";
-import { handleArrowPress } from "./handlers/handleArrowPress";
+import { upDownPress } from "./handlers/upDownPress";
 import { handleAltPress } from "./handlers/handleAltPress";
 import { handleEnterPress } from "./handlers/enterHandler";
+import { handleSpacePress } from "./handlers/spaceHandler";
 
 export default [
     {
@@ -50,7 +51,7 @@ export default [
         },
         preventsDefault: true,
         handler: function*() {
-            yield handleArrowPress(-1)
+            yield upDownPress(-1)
         }
     },
     {
@@ -60,7 +61,17 @@ export default [
         },
         preventsDefault: true,
         handler: function*() {
-            yield handleArrowPress(1)
+            yield upDownPress(1)
+        }
+    },
+    {
+        name: "Space",
+        keys: {
+            32:32
+        },
+        preventsDefault: false,
+        handler: function*() {
+            yield handleSpacePress()
         }
     }
 ];

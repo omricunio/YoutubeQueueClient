@@ -1,8 +1,9 @@
 import socketIOClient from "socket.io-client";
-import { SERVER_URL } from "../config/hosts";
+import { SERVER_URL } from "../config/config";
 import { store } from "../index";
 import { deleteItemByIndex } from "../reducers/player/actions";
 import { addItemMiddleware } from "../sagas/player/actions";
+import { reloadQueue } from "../sagas/queue/actions";
 
 export async function listenToQueueEvents(queueGuid, userId) {
   console.log(`Start listening to queue ${queueGuid}`);
@@ -15,8 +16,13 @@ export async function listenToQueueEvents(queueGuid, userId) {
   socket.on("removed", (index) => {
     store.dispatch(deleteItemByIndex(Number(index)));
   });
+  let firstTimeConnected = true;
   return new Promise((resolve, reject) => {
     socket.on("connected", () => {
+      firstTimeConnected = false;
+      if(!firstTimeConnected) {
+        store.dispatch(reloadQueue());
+      }
       resolve()
     })
     socket.on("connection_error", (error) => {
