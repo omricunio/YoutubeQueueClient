@@ -4,6 +4,7 @@ import { upDownPress } from "./handlers/upDownPress";
 import { handleAltPress } from "./handlers/handleAltPress";
 import { handleEnterPress } from "./handlers/enterHandler";
 import { handleSpacePress } from "./handlers/spaceHandler";
+import { leftRightPress } from "./handlers/leftRightPress";
 
 export default [
     {
@@ -62,6 +63,26 @@ export default [
         preventsDefault: true,
         handler: function*() {
             yield upDownPress(1)
+        }
+    },
+    {
+        name: "ArrowLeft",
+        keys: {
+            37:37
+        },
+        preventsDefault: true,
+        handler: function*() {
+            yield leftRightPress(-1)
+        }
+    },
+    {
+        name: "ArrowRight",
+        keys: {
+            39:39
+        },
+        preventsDefault: true,
+        handler: function*() {
+            yield leftRightPress(1)
         }
     },
     {
