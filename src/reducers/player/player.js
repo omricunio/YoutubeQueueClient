@@ -21,7 +21,7 @@ const player = (state = INITIAL_STATE, action) => {
         case SET_ITEMS:
             const queueItems = action.items;
             const firstItem = queueItems.shift();
-            return {...state, currentItem: firstItem, items: queueItems, progress: 0, buffer: 0}
+            return {...state, currentItem: firstItem, items: queueItems, playedItems: [], progress: 0, buffer: 0}
         case ADD_NEW_ITEM:
             let items = Object.create(state.items);
             if(action.position) {
