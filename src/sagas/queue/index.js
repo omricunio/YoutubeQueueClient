@@ -7,6 +7,7 @@ import { ERROR_TOAST } from '../toasters/toasters';
 import { showToast } from '../toasters/actions';
 import { createUser } from '../appSettings/actions';
 import { addItemMiddleware } from '../player/actions';
+import * as _ from "lodash";
 
 function* addItemToQueue({item}) {
     const queueGuid = yield select((state) => state.appSettings.queueGuid);
@@ -71,8 +72,19 @@ function* setQueue(guid) {
 
 function* reloadQueue() {
     const queueGuid = yield select((state) => state.appSettings.queueGuid);
-    const queue = yield call(getQueueRequest, queueGuid);
-    yield put(setItems(queue.items));
+
+    const playedItems = yield select((state) => state.player.playedItems);
+    const currentItem = yield select((state) => state.player.currentItem);
+    const items = yield select((state) => state.player.items);
+
+    const oldQueue = [...playedItems, currentItem, ...items];
+    const newQueue = (yield call(getQueueRequest, queueGuid)).items;
+
+    const isTheSameItems = _(oldQueue).differenceWith(newQueue, _.isEqual).isEmpty();
+    debugger;
+    if(!isTheSameItems) {
+        yield put(setItems(newQueue));
+    }
 }
 
 export default function*() {
