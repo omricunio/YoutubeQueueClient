@@ -81,7 +81,6 @@ function* reloadQueue() {
     const newQueue = (yield call(getQueueRequest, queueGuid)).items;
 
     const isTheSameItems = _(oldQueue).differenceWith(newQueue, _.isEqual).isEmpty();
-    debugger;
     if(!isTheSameItems) {
         yield put(setItems(newQueue));
     }
