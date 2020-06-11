@@ -6,14 +6,15 @@ import { openVideoSearch } from '../../reducers/videoSearch/actions';
 
 class TopBarContainer extends React.Component {
     render() {
-        const { dispatchToggleDarkMode, dispatchShowVideoSearch, title } = this.props;
-        return <TopBar onAddClick={dispatchShowVideoSearch} title={title} onDarkModeClick={dispatchToggleDarkMode}/>
+        const { dispatchToggleDarkMode, dispatchShowVideoSearch, title, queueGuid } = this.props;
+        return <TopBar onAddClick={dispatchShowVideoSearch} title={title} onDarkModeClick={dispatchToggleDarkMode} queueGuid={queueGuid}/>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        title: state.appSettings.title
+        title: state.appSettings.title,
+        queueGuid: state.appSettings.queueGuid
     }
 };
 

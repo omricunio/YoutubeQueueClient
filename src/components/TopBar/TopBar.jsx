@@ -1,16 +1,15 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import { Toolbar, Typography } from "@material-ui/core";
+import { Toolbar, Typography, Badge } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
-import { Add, WbSunny } from "@material-ui/icons"
+import { Add, WbSunny, Edit } from "@material-ui/icons"
 import styles from "./styles";
 import { withStyles } from '@material-ui/core/styles';
-import QueueMusicIcon from '@material-ui/icons/QueueMusic';
 import PropTypes from 'prop-types'
 
 class TopBar extends React.Component {
     render() {
-        const { classes, title, onDarkModeClick, onAddClick } = this.props;
+        const { classes, title, onDarkModeClick, onAddClick, queueGuid } = this.props;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -18,10 +17,18 @@ class TopBar extends React.Component {
                         <IconButton edge="start" color="inherit" className={classes.addButton} onClick={onAddClick}>
                             <Add />
                         </IconButton>
-                        <QueueMusicIcon/>
-                        <Typography variant="h6" className={classes.title}>
-                            {title}
-                        </Typography>
+                        <div className={classes.main}>
+                            <Badge className={classes.queueGuidContainer} color="secondary" anchorOrigin={{vertical: 'bottom', horizontal: 'right',}} badgeContent={<Edit fontSize={"inherit"}/>}>
+                                <div className={classes.queueGuid}>
+                                    {queueGuid}
+                                </div>
+                            </Badge>
+                            <div>
+                                <Typography variant="h6" className={classes.title}>
+                                    {title}
+                                </Typography>
+                            </div>
+                        </div>
                         <IconButton color="inherit" onClick={onDarkModeClick}>
                             <WbSunny />
                         </IconButton>
