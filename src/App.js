@@ -1,5 +1,6 @@
 import React from 'react';
 import HomePage from './components/HomePage';
+import StartPage from './components/StartPage';
 
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import * as Themes from './data/theme';
@@ -27,6 +28,7 @@ function App(props) {
             <CssBaseline/>
             <Router>
                 <Switch>
+                    <Route path="/" exact={true} component={StartPage}/>
                     <Route path="/:queueGuid?" component={HomePage}/>
                 </Switch>
             </Router>
