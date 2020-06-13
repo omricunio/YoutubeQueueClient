@@ -3,8 +3,7 @@ import QRCode from "qrcode.react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "./QueueQR.styles";
-import { Modal, Card, Typography } from "@material-ui/core";
-import { Animated } from "react-animated-css";
+import { Modal, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
