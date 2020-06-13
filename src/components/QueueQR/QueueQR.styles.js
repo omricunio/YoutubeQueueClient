@@ -13,7 +13,7 @@ export default (theme) =>
             letterSpacing: "10px"
         },
         content: {
-            background: "linear-gradient(108deg, rgba(224,47,37,0.5) 0%, rgba(129,1,7,0.5) 100%)",
+            background: "linear-gradient(108deg, rgba(224, 47, 37, 0.85) 0%, rgba(129, 1, 7, 0.85) 100%)",
             width: "80vw",
             height: "80vh",
             [theme.breakpoints.down("sm")]: {
