@@ -3,7 +3,7 @@ export default theme => {
     container: {
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "center"
     },
     card: {
         backgroundColor: "#ffffff26",
