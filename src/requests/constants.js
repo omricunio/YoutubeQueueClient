@@ -1,7 +1,7 @@
 
 
 export const KEYS = [
-    "AIzaSyCdVPpg1hyjJ4c6mx5Rer4Lg1pSUwsSlPQ"
+    "AIzaSyD70Yu1wDCD1_ORTzjmEtrt8aPgUqEK0cY"
 ];
 
 export const getRandomAPIKey = () => {
