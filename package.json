@@ -17,6 +17,7 @@
     "lodash": "^4.17.15",
     "material-ui-image": "^3.2.2",
     "prop-types": "^15.7.2",
+    "qrcode.react": "^1.0.0",
     "react": "^16.12.0",
     "react-animated-css": "^1.2.1",
     "react-dom": "^16.12.0",
